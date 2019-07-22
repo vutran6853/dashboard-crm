@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import crmReducer from './crmReducer'
-import loginReducer from './loginReducer'
+import authReducer from './authReducer'
 import promiseMiddleware from 'redux-promise-middleware'
 
 // Redux devtool
@@ -11,7 +11,7 @@ const middlewares = composeEnhancers(applyMiddleware(promiseMiddleware))
 
 const combineReducer = combineReducers({
   crm: crmReducer,
-  sign: loginReducer
+  auth: authReducer
 })
 
 const store = createStore(combineReducer, middlewares)

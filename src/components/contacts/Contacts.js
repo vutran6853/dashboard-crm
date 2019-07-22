@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
-import Navbar from '../navbar/Navbar'
+import { connect } from 'react-redux'
+import { getContactsList } from '../../duck/crmReducer'
 
 class Contacts extends Component {
   state = {  }
-  render() { 
+
+  componentDidMount() {
+    this.props.getContactsList()
+  }
+  render() {
+    console.log('this.prpps', this.props)
     return ( 
       <div>
-        {/* <Navbar /> */}
         Contacts components
       </div>
-     )
+    )
   }
 }
- 
-export default Contacts
+
+function mapPropToState(state) {
+  console.log(state)
+  return state
+}
+
+export default connect(mapPropToState, { getContactsList })(Contacts)

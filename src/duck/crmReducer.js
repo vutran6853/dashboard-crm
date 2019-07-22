@@ -1,11 +1,21 @@
 const ADDLIST = 'ADDLIST'
 const ADDPRICE = 'ADDPRICE'
 const ADDBOTH = 'ADDBOTH'
+const GETCONTACTS = 'GETCONTACTS'
 
 const initialState = {
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc'],
   item: '',
   price: 0,
+  contactsList: []
+}
+
+export function getContactsList() {
+  console.log('hit getContactsList')
+  return {
+    type: GETCONTACTS,
+    payload: fetch('/api/contacts')
+  }
 }
 
 export function setSelect(passValue) {
@@ -30,7 +40,7 @@ export function setBoth(name, passValue) {
 }
 
 function crmReducer(state = initialState, action) {
-  console.log('action', action.payload)
+  // console.log('action', action.payload)
   switch(action.type) {
     case ADDLIST:
       return {

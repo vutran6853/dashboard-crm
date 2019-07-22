@@ -8,12 +8,14 @@ import Chat from './components/chat/Chat'
 import Deals from './components/deals/Deals'
 import Settings from './components/settings/Settings'
 // import Navbar from './components/navbar/Navbar'
-import Login from './components/login/Login'
+import Login from './components/auth/Login'
+import Signup from './components/auth/SignUp'
 
 const route = (
   <Switch>
     <Route exact path="/dashboard" component={ Dashboard } />
     <Route path='/login' component={ Login } />
+    <Route path='/signup' component={ Signup } />
     <Route path='/tasks' component={ Tasks } />
     <Route path='/email' component={ Email } />
     <Route path='/tasks' component={ Tasks } />

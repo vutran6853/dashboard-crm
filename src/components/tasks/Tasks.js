@@ -4,54 +4,46 @@ import PropTypes  from 'prop-types'
 import { connect } from 'react-redux'
 import { setSelect, setPrice, setBoth } from '../../duck/crmReducer'
 
-class Tasks extends Component {
-  state = { 
-    price: 0,
-    selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc'],
-    item: ''
+function Tasks(props) {
+ const handleUserInput = (e) => {
+    // console.log('e.target.name', e.target.name, 'e.target.value =', e.target.value)
+    // this.setState({ [e.target.name]: e.target.value })
+    props.setBoth(e.target.name, e.target.value)
   }
 
-  handleUserInput = (payload) => {
-    // console.log('payload.target.name', payload.target.name, 'payload.target.value =', payload.target.value)
-    this.setState({ [payload.target.name]: payload.target.value })
-    this.props.setBoth(payload.target.name, payload.target.value)
+  const handleAction = () => {
+    // this.props.setSelect(this.state.item)
+    // this.props.setPrice(this.state.price)
   }
 
-  handleAction = () => {
-    this.props.setSelect(this.state.item)
-    this.props.setPrice(this.state.price)
-  }
-  
-  render() {
-    let displaySelectItem = this.props.selectItem.map((value) => (
-        <option value={ value } key={value}>{ value }</option>
-    ))
+  let displaySelectItem = props.selectItem.map((value) => (
+    <option value={ value } key={value}>{ value }</option>
+  ))
 
-    // console.log('this.props = ', this.props)
-    return ( 
-      <div>
-        Task components
-        <p>* Input some data </p>
-        <p>* Show data in pie or bar grapic </p>
-        <p>* save data in database</p>
-        <p>* login /signup to view owner data</p>
-        <input  type="number" 
-                placeholder="Enter Price" 
-                name="price"
-                onChange={ (e) => this.handleUserInput(e) }>
-        </input>
-        <select name="item" onChange={ (e) => this.handleUserInput(e) }>
-          { displaySelectItem }
-        </select>
+  return (
+    <div>
+      Task components
+      <p>* Input some data </p>
+      <p>* Show data in pie or bar grapic </p>
+      <p>* save data in database</p>
+      <p>* login /signup to view owner data</p>
+      <input  type="number"
+              placeholder="Enter Price"
+              name="price"
+              onChange={ handleUserInput }>
+      </input>
+      <select name="item" onChange={ handleUserInput }>
+        { displaySelectItem }
+      </select>
 
-        <button onClick={ this.handleAction }>Sumit</button>
-      </div>
-     )
-  }
+      <button onClick={ handleAction }>Sumit</button>
+    </div>
+  )
 }
 
+// map props from reducer to component
 function mapPropToState(state) {
-  return state
+  return state.crm
 }
 
 // props type
