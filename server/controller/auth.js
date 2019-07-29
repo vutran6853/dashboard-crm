@@ -41,7 +41,48 @@ const login = (req, res) => {
   })
 }
 
+const updateEmail = (req, res) => {
+  let dbInstance = req.app.get('db')
+  // console.log('req', req.body)
+
+  dbInstance.postUpdateEmail(req.body.id, req.body.newEmail)
+  .then((response) => {
+    // console.log('response', response)
+    res.status(200).send(response)
+  })
+  .catch((err) => {
+    console.log('Unable to post at updateEmail(): ', err)
+  })
+}
+
+const updatePassword = (req, res) => {
+  let dbInstance = req.app.get('db')
+
+  console.log('hit updatePassword')
+  console.log('req.body.', req.body)
+  bcrypt.hash(req.body.newPassword, saltRounds)
+  .then((hashpassword) => {
+    dbInstance.postUpdatePassword(req.body.id, hashpassword)
+    .then((response) => {
+      console.log('response', response)
+      res.status(200).send(response)
+    })
+    .catch((err) => {
+      console.log('Unable to post at updateEmail(): ', err)
+    })
+  })
+  .catch((err) => {
+    console.log('unable to hash password at updatePassword(): ', err)
+  })
+
+
+
+
+}
+
 module.exports = {
   register,
-  login
+  login,
+  updateEmail,
+  updatePassword
 }

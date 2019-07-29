@@ -9,3 +9,10 @@ CREATE TABLE users (
 INSERT INTO users (users_username, users_password)
 VALUES ($1, $2)
 RETURNING users_id, users_username
+
+
+CREATE TABLE spend (
+	spend_id SERIAL,
+	item VARCHAR(255),
+	user_id INTEGER REFERENCES USERS (USERS_ID)
+)

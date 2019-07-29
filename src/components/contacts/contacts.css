@@ -1,0 +1,14 @@
+.contacts-container {
+  /* background-color: blue; */
+  border: 5px solid blue;
+  /* height: 100%; */
+  width: 100%;
+}
+
+.contacts-item {
+  border: 5px solid gray;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 50px;
+  align-content: center;
+}

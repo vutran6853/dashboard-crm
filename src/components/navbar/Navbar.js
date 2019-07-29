@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './navbar.css'
 
 class Navbar extends Component {
@@ -23,10 +24,15 @@ class Navbar extends Component {
       )
     })
 
+    let displayUserInfo = this.props.authBool ? (
+      <p>Welcome { this.props.username }</p>
+    ) : 'no'
+
     return (
       <div className="navbar-container">
-        Navbar Components
+        Navbar
         <div>
+          { displayUserInfo }
           { displayItem }
         </div>
       </div>
@@ -34,4 +40,8 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+const mapPropToState = (state) => {
+  return state.auth
+}
+
+export default connect(mapPropToState, {  })(Navbar)
