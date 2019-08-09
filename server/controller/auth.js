@@ -74,10 +74,6 @@ const updatePassword = (req, res) => {
   .catch((err) => {
     console.log('unable to hash password at updatePassword(): ', err)
   })
-
-
-
-
 }
 
 module.exports = {

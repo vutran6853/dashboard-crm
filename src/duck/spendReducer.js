@@ -2,14 +2,23 @@ import axios from "axios";
 
 const PRICE = 'PRICE'
 const ITEM = 'ITEM'
+const PURCHASEDATE = ' PURCHASEDATE'
 const RESTART = 'RESTART'
 const POSTTODB = 'POSTTODB'
+
 const initialState = {
   price: 0,
   item: '',
+  purchaseDate: '',
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']
 }
 
+export function setPurchaseDate(passValue) {
+  return {
+    type: PURCHASEDATE,
+    payload: passValue
+  }
+}
 
 export function setSpendPrice(passValue) {
   return {
@@ -50,10 +59,16 @@ function spendReducer(state = initialState, action) {
         ...state,
         item: action.payload
       }
+    case PURCHASEDATE: 
+      return {
+        ...state,
+        purchaseDate : action.payload
+      }
     case RESTART:
       return {
         price: 0,
         item: '',
+        purchaseDate: '',
         selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']      
       }
     default:

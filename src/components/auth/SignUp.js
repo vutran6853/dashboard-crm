@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUp } from '../../duck/authReducer'
+import './auth.css'
 
 class Login extends Component {
   constructor(props) {
@@ -38,27 +39,30 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <p>Sign Up</p>
-        <h3>username: </h3>
-        <input  type="text" 
-                value={ this.state.username } 
-                name="username" 
-                onChange={ this.handleSetUserInfo } 
-                placeholder='Enter username'
-        />
-        <h3>Password: </h3>
-        <input  type="password" 
-                value={ this.state.password } 
-                name="password" 
-                onChange={ this.handleSetUserInfo } 
-                placeholder='Enter password'
-        />
-
-        <button onClick={ this.handleSignUp }>Submit</button>
-        <button onClick={ this.hadnleRouterToLogin } >Already have account</button>
+      <div className="authContainer">
+        <div className="authBox">
+          <p className="authTitle">Sign Up</p>
+          <div className="authInputField">
+            <input  type="text"
+                    value={ this.state.username } 
+                    name="username"
+                    onChange={ this.handleSetUserInfo } 
+                    placeholder='Enter username'>
+            </input>
+            <input  type="password"
+                    value={ this.state.password } 
+                    name="password"
+                    onChange={ this.handleSetUserInfo } 
+                    placeholder='Enter password'>
+            </input>
+          </div>
+          <div className="authButtonArea">
+            <button onClick={ this.handleSignUp }>Submit</button>
+            <button onClick={ this.hadnleRouterToLogin }>Already have account</button>
+          </div>
+        </div>
       </div>
-     )
+    )
   }
 }
 

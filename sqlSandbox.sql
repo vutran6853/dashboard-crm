@@ -14,5 +14,10 @@ RETURNING users_id, users_username
 CREATE TABLE spend (
 	spend_id SERIAL,
 	item VARCHAR(255),
-	user_id INTEGER REFERENCES USERS (USERS_ID)
+	price INT,
+	user_id INTEGER REFERENCES USERS (user_id)
 )
+
+
+INSERT INTO SPEND(item, price, user_id) 
+VALUES ('food', 30, 3)

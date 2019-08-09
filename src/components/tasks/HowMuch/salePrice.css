@@ -1,0 +1,31 @@
+.salePriceContainer {
+  background-color: gray;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.salePriceForm {
+  border: 3px solid firebrick;
+  height: 20rem;
+  width: 30rem;
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  background-color: tan;
+  justify-content: center;
+  align-items: center;
+}
+
+.salePriceForm > input {
+
+}
+
+.resultContainer {
+  background-color: red;
+  margin: auto;
+}

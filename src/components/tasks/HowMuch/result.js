@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 function Result(props) {
   console.log(props)
   return (
-    <div>
+    <div className="resultContainer">
       <h3>Price: ${ props.price }</h3>
       <h3>Discount: ${ props.saleDiscount } off</h3>
       <h3>Total: ${ props.total }</h3>

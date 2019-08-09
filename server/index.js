@@ -8,6 +8,7 @@ const massive = require('massive')
 const { register, login, updateEmail, updatePassword } = require('./controller/auth')
 const { contacts } = require('./controller/contacts')
 const { postDailySpend } = require('./controller/spend')
+const { userHistoryInfo } = require('./controller/grapic')
 
 app.use(cors())
 app.use(express.json())
@@ -21,7 +22,10 @@ massive(process.env.CONNECT_STRING)
 // Endpoint
 app.post('/api/register', register)
 app.post('/api/login', login)
+
 app.get('/api/contacts', contacts)
+app.get('/api/graphic/:id', userHistoryInfo)
+
 
 app.put('/api/update/email', updateEmail)
 app.put('/api/update/password', updatePassword)

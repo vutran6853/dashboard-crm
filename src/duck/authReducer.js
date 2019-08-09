@@ -6,7 +6,7 @@ const EMAIL = 'EMAIL'
 const RESETSTATE = 'RESETSTATE'
 
 const initialState = {
-  userID: '',
+  userID: '1',
   username: '',
   userEmail: '',
   authBool: true,

@@ -1,0 +1,25 @@
+.tasksContainer {
+  background-color: blue;
+  height: 100vh;
+  width: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px;
+  grid-gap: 50px;
+  align-content: center;
+  justify-content: center;
+}
+
+.tasksContainer > button {
+  background-color: yellow;
+  height: 100px;
+  width: 100px;
+  border: 3px solid red;
+}
+
+.tasksContainer > button:hover {
+  background-color: gray;
+  cursor: pointer;
+}

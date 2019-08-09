@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../navbar/Navbar'
+// import Navbar from '../navbar/Navbar'
 
 class Chat extends Component {
   state = {  }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../navbar/Navbar'
+// import Navbar from '../navbar/Navbar'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, restartState } from '../../duck/authReducer'
 

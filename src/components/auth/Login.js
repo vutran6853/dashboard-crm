@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginIn } from '../../duck/authReducer'
 import PropTypes from 'prop-types'
+import './auth.css'
 
 class Login extends Component {
   constructor(props) {
@@ -34,34 +35,35 @@ class Login extends Component {
   }
 
   handleRouterToSignUp = () => {
-    console.log('hit')
     this.props.history.push('/signup')
   }
 
   render() {
     return (
-      <div>
-        <p>Login back</p>
-        <h3>username: </h3>
-        <input  type="text" 
-                value={ this.state.username } 
-                name="username" 
-                onChange={ this.handleSetUserInfo } 
-                placeholder='Enter username'
-        />
-        <h3>Password: </h3>
-        <input  type="password" 
-                value={ this.state.password } 
-                name="password" 
-                onChange={ this.handleSetUserInfo } 
-                placeholder='Enter password'
-        />
-
-        <button onClick={ this.handleLoginIn }>Submit</button>
-
-        <button onClick={ this.handleRouterToSignUp } >Need account</button>
+      <div className="authContainer">
+        <div className="authBox">
+          <p className="authTitle">Login back</p>
+          <div className="authInputField">
+            <input  type="text"
+                    value={ this.state.username } 
+                    name="username"
+                    onChange={ this.handleSetUserInfo } 
+                    placeholder='Enter username'>
+            </input>
+            <input  type="password"
+                    value={ this.state.password } 
+                    name="password"
+                    onChange={ this.handleSetUserInfo } 
+                    placeholder='Enter password'>
+            </input>
+          </div>
+          <div className="authButtonArea">
+            <button onClick={ this.handleLoginIn }>Submit</button>
+            <button onClick={ this.handleRouterToSignUp } >Need account</button>
+          </div>
+        </div>
       </div>
-     )
+    )
   }
 }
 

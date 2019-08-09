@@ -5,7 +5,7 @@ import './navbar.css'
 
 class Navbar extends Component {
   state = { 
-    navbarItem: ['Dashboard', 'Tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
+    navbarItem: ['Dashboard', 'tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
   }
 
 
@@ -30,7 +30,6 @@ class Navbar extends Component {
 
     return (
       <div className="navbar-container">
-        Navbar
         <div>
           { displayUserInfo }
           { displayItem }

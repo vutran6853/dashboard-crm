@@ -4,6 +4,7 @@ const ADDPRICE = 'ADDPRICE'
 const SALE = 'SALE'
 const SALEDISCOUNT = 'SALEDISCOUNT'
 const TOTAL = 'TOTAL'
+const RESETSTATE = 'RESETSTATE'
 
 const initialState = {
   // item: [],
@@ -51,6 +52,13 @@ export function setSaleDiscount(passValue) {
   }
 }
 
+export function restartState() {
+  return {
+    type: RESETSTATE,
+    payload: null
+  }
+}
+
 function taskReducer(state = initialState, action) {
   switch(action.type) {
     case ADDPRICE:
@@ -78,6 +86,13 @@ function taskReducer(state = initialState, action) {
       return {
         ...state,
         saleDiscount: action.payload
+      }
+    case RESETSTATE:
+      return {
+        ...state,
+        price: 0,
+        total: '',
+        sale: 0
       }
     default:
       return state
