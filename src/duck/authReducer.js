@@ -17,28 +17,28 @@ const initialState = {
   failMessage: 'Unable to update.Try again'
 }
 
-export function restartState() {
+function restartState() {
   return {
     type: RESETSTATE,
     payload: null
   }
 }
 
-export function signUp(passValue) {
+function signUp(passValue) {
   return {
     type: SIGNUP,
     payload: axios.post('/api/register', { passValue })
   }
 }
 
-export function loginIn(passValue) {
+function loginIn(passValue) {
   return {
     type: LOGININ,
     payload: axios.post('/api/login', { passValue })
   }
 }
 
-export function updateEmail(passValue) {
+function updateEmail(passValue) {
 console.log('passValue', passValue)
   return {
     type: EMAIL,
@@ -46,7 +46,7 @@ console.log('passValue', passValue)
   }
 }
 
-export function updatePassword(passValue) {
+function updatePassword(passValue) {
   console.log('passValue', passValue)
     return {
       type: EMAIL,
@@ -108,3 +108,10 @@ function authReducer(state = initialState, action) {
 
 export default authReducer
 
+export {
+  restartState,
+  signUp,
+  loginIn,
+  updateEmail,
+  updatePassword
+}

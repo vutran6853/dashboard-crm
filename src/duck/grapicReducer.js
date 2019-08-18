@@ -11,7 +11,7 @@ const initalState = {
 }
 
 
-export const fetchUserInfo = (passValue) => {
+const fetchUserInfo = (passValue) => {
   console.log('enter passValue = ', passValue)
   return {
     type: FETCH,
@@ -35,3 +35,7 @@ function grapicReducer(state = initalState, action) {
 }
 
 export default grapicReducer
+
+export {
+  fetchUserInfo
+}

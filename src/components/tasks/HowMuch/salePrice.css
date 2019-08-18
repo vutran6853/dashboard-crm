@@ -1,31 +1,43 @@
 .salePriceContainer {
-  background-color: gray;
-  height: 100vh;
+  background-color: lightslategray;
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.salePriceForm {
-  border: 3px solid firebrick;
-  height: 20rem;
-  width: 30rem;
-  /* margin: auto; */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10rem;
-  display: flex;
-  flex-direction: column;
-  background-color: tan;
-  justify-content: center;
   align-items: center;
 }
 
-.salePriceForm > input {
+.salePriceForm {
+  /* border: 1px solid firebrick; */
+  height: 20rem;
+  width: 30rem;
+  background-color: #FFF;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.salePriceForm > .salePriceItem > input {
+  /* height: 10rem; */
+  width: 10rem;
+}
+
+.salePriceForm > .submitButton {
+  background-color: lightblue;
+  border-style: none;
+  color: white;
+  width: 10rem;
+  box-shadow: 2px 2px lightblue;
+}
+
+.salePriceForm > .submitButton:hover {
+  background-color: blue;
+  box-shadow: none;
+  cursor: pointer;
 
 }
 
 .resultContainer {
-  background-color: red;
-  margin: auto;
+  width: 30rem;
 }

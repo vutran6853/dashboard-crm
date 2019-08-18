@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes  from 'prop-types'
 import { setPrice, setItem, setSale, setTotal, setSaleDiscount, restartState } from '../../../duck/taskReducer'
 
-import Result from './result'
+import Result from './Result'
 import './salePrice.css'
 
 function SalePrice(props) {
@@ -36,9 +36,10 @@ function SalePrice(props) {
 
   return (
     <div className="salePriceContainer">
+      <h1>How Much</h1>
 
       <div className="salePriceForm">
-        <div>
+        <div className="salePriceItem">
           <p>Price</p>
           <input  type="number"
                   placeholder="Enter Price"
@@ -49,7 +50,7 @@ function SalePrice(props) {
           </input>
         </div>
 
-        <div>
+        <div className="salePriceItem">
           <p>Sale</p>
           <input  type="number"
                   placeholder="Enter discount"
@@ -60,13 +61,13 @@ function SalePrice(props) {
           </input>
         </div>
 
-        <div>
-          <button onClick={ setTotalToReducer }>Sumit</button>
-        </div>
-
+        <button className="submitButton" onClick={ setTotalToReducer }>Sumit</button>
       </div>
 
-      { displayResult }
+      <div>
+        { displayResult }
+      </div>
+
 
     </div>
   )

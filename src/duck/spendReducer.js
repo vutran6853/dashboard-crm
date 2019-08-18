@@ -13,34 +13,34 @@ const initialState = {
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']
 }
 
-export function setPurchaseDate(passValue) {
+function setPurchaseDate(passValue) {
   return {
     type: PURCHASEDATE,
     payload: passValue
   }
 }
 
-export function setSpendPrice(passValue) {
+function setSpendPrice(passValue) {
   return {
     type: PRICE,
     payload: passValue
   }
 }
 
-export function setSpendItem(passValue) {
+function setSpendItem(passValue) {
   return {
     type: ITEM,
     payload: passValue
   }
 }
 
-export function setResetState() {
+function setResetState() {
   return {
     type: RESTART
   }
 }
 
-export function postToDB(passValue) {
+function postToDB(passValue) {
   return {
     type: POSTTODB,
     payload: axios.post('http://localhost:3020/api/spend/daily', passValue)
@@ -78,3 +78,11 @@ function spendReducer(state = initialState, action) {
 
 
 export default spendReducer
+
+export {
+  setPurchaseDate,
+  setSpendPrice,
+  setSpendItem,
+  setResetState,
+  postToDB
+}

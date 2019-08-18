@@ -12,7 +12,7 @@ const initialState = {
   contactsList: []
 }
 
-export function getContactsList() {
+function getContactsList() {
   console.log('hit getContactsList')
   return {
     type: GETCONTACTS,
@@ -20,21 +20,21 @@ export function getContactsList() {
   }
 }
 
-export function setSelect(passValue) {
+function setSelect(passValue) {
   return {
     type: ADDLIST,
     payload: passValue
   }
 }
 
-export function setPrice(passValue) {
+function setPrice(passValue) {
   return {
     type: ADDPRICE,
     payload: passValue
   }
 }
 
-export function setBoth(name, passValue) {
+function setBoth(name, passValue) {
   return {
     type: ADDBOTH,
     payload: [name, passValue]
@@ -70,3 +70,10 @@ function crmReducer(state = initialState, action) {
 }
 
 export default crmReducer
+
+export {
+  getContactsList,
+  setSelect,
+  setPrice,
+  setBoth
+}

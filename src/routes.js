@@ -17,19 +17,19 @@ import SpendingWhat from './components/tasks/SpendingWhat/SpendingWhat'
 const route = (
   <Switch>
     <Route exact path="/dashboard" component={ Dashboard } />
-    <Route path='/login' component={ Login } />
-    <Route path='/signup' component={ Signup } />
-    <Route path='/email' component={ Email } />
-    <Route path='/tasks/' component={ Tasks } />
-    <Route exact strict path='/grapic' component={ Grapic } />
-    <Route path='/how_much' component={ HowMuch } />
-    <Route path='/spending_what' component={ SpendingWhat } />
+    <Route path='/Login' component={ Login } />
+    <Route path='/Signup' component={ Signup } />
+    <Route path='/Email' component={ Email } />
+    <Route exact path='/Tasks/' component={ Tasks } />
+    <Route path='/Tasks/grapic' component={ Grapic } />
+    <Route path='/Tasks/how_much' component={ HowMuch } />
+    <Route path='/Tasks/spending_what' component={ SpendingWhat } />
 
 
-    <Route path='/contacts' component={ Contacts } />
-    <Route path='/chat' component={ Chat } />
-    <Route path='/deals' component={ Deals } />
-    <Route path='/settings' component={ Settings } />
+    <Route path='/Contacts' component={ Contacts } />
+    <Route path='/Chat' component={ Chat } />
+    <Route path='/Deals' component={ Deals } />
+    <Route path='/Settings' component={ Settings } />
   </Switch>
 )
 

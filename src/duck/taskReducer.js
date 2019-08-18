@@ -16,7 +16,7 @@ const initialState = {
   total: ''
 }
 
-export function setPrice(passValue) {
+function setPrice(passValue) {
   // console.log('hit additem', passValue)
   return {
     type: ADDPRICE,
@@ -24,35 +24,35 @@ export function setPrice(passValue) {
   }
 }
 
-export function setSale(passValue) {
+function setSale(passValue) {
   return {
     type: SALE,
     payload: passValue
   }
 }
 
-export function setTotal(passValue) {
+function setTotal(passValue) {
   return {
     type: TOTAL,
     payload: passValue
   }
 }
 
-export function setItem(passValue) {
+function setItem(passValue) {
   return {
     type: ADDLIST,
     payload: passValue
   }
 }
 
-export function setSaleDiscount(passValue) {
+function setSaleDiscount(passValue) {
   return {
     type: SALEDISCOUNT,
     payload: passValue
   }
 }
 
-export function restartState() {
+function restartState() {
   return {
     type: RESETSTATE,
     payload: null
@@ -100,3 +100,12 @@ function taskReducer(state = initialState, action) {
 }
 
 export default taskReducer
+
+export {
+  setPrice,
+  setSale,
+  setTotal,
+  setItem,
+  setSaleDiscount,
+  restartState
+}

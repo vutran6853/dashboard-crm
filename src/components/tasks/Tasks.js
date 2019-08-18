@@ -12,20 +12,13 @@ import React, { Component } from 'react'
 import './tasks.css'
 
 class Tasks extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      type: '',
-      price: 0
-    }
-  }
 
   componentWillUnmount() {
     console.log('component will unmount from Task components')
   }
 
   handleRouteTo = (passValue) => {
-    this.props.history.push(`/${passValue}`)
+    this.props.history.push(`/Tasks/${passValue}`)
   }
 
   render() {

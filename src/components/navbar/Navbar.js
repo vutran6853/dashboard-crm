@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import './navbar.css'
 
 class Navbar extends Component {
-  state = { 
-    navbarItem: ['Dashboard', 'tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
+  state = {
+    navbarItem: ['Dashboard', 'Tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
   }
 
 
