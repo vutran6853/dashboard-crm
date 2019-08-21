@@ -1,0 +1,23 @@
+.tasksContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px;
+  grid-gap: 50px;
+  align-content: center;
+  justify-content: center;
+
+  button {
+    background-color: lightblue;
+    height: 100px;
+    width: 100px;
+    border-style: none;
+    box-shadow: 2px 2px lightgreen;
+
+    &:hover {
+      background-color: lightgreen;
+      cursor: pointer;
+      box-shadow: none;
+    }
+  }
+}

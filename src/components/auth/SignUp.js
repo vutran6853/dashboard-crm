@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUp } from '../../duck/authReducer'
-import './auth.css'
+import './auth.scss'
 
 class Login extends Component {
   constructor(props) {
@@ -39,10 +39,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="authContainer">
-        <div className="authBox">
-          <p className="authTitle">Sign Up</p>
-          <div className="authInputField">
+      <div className="auth-container">
+        <div className="auth-box">
+          <p className="auth-title">Sign Up</p>
+          <div className="auth-input-field">
             <input  type="text"
                     value={ this.state.username } 
                     name="username"
@@ -56,7 +56,7 @@ class Login extends Component {
                     placeholder='Enter password'>
             </input>
           </div>
-          <div className="authButtonArea">
+          <div className="auth-button-area">
             <button onClick={ this.handleSignUp }>Submit</button>
             <button onClick={ this.hadnleRouterToLogin }>Already have account</button>
           </div>

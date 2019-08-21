@@ -1,0 +1,40 @@
+.spendingWhat-container {
+  border: 2px solid red;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.spendingWhat-container > .spendingWhat-form {
+  width: 50%;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spendingWhat-form > div {
+  display: flex;
+  width: 15rem;
+  justify-content: space-between;
+}
+
+.spendingWhat-form > div > input,
+.spendingWhat-form > div > select {
+  width: 10rem;
+}
+
+.spendingWhat-form > .submit {
+  border-style: none;
+  width: 15rem;
+  cursor: pointer;
+  box-shadow: 2px 2px blue;
+}
+
+.spendingWhat-form > .submit:hover {
+  background-color: lightcoral;
+
+}

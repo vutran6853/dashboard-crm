@@ -1,15 +1,5 @@
 import React, { Component } from 'react'
-// import Navbar from '../navbar/Navbar'
-// import PropTypes  from 'prop-types'
-// import { connect } from 'react-redux'
-// import { setSelect, setBoth } from '../../duck/crmReducer'
-// import { setPrice, setItem } from '../../duck/taskReducer'
-// import SalePrice from './howMuch/SalePrice'
-// import Result from './howMuch/result'
-// import SpendWhat from './SpendingWhat/SpendingWhat'
-// import Grapic from './graphic/Grapic'
-// import { Link } from 'react-router-dom'
-import './tasks.css'
+import './tasks.scss'
 
 class Tasks extends Component {
 

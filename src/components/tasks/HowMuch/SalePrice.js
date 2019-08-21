@@ -1,18 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes  from 'prop-types'
+import Result from './Result'
 import { setPrice, setItem, setSale, setTotal, setSaleDiscount, restartState } from '../../../duck/taskReducer'
 
-import Result from './Result'
-import './salePrice.css'
+import './salePrice.scss'
 
 function SalePrice(props) {
-  const setPriceToReducer = (e) => {
-    return props.setPrice(parseInt(e.target.value))
-  }
 
-  const setSaleToReducer = (e) => {
-    return props.setSale(parseInt(e.target.value))
+  const setValueToState = (e) => {
+    // let obj = {
+    //   [e.target.name]: parseInt(e.target.value)
+    // }
+
+    if (e.target.name === 'price') {
+      props.setPrice(parseInt(e.target.value))
+    }
+
+    if (e.target.name === 'saleDiscount') {
+      props.setSale(parseInt(e.target.value))
+    }
+
+    return null
   }
 
   const setTotalToReducer = () => {
@@ -27,48 +36,44 @@ function SalePrice(props) {
   const setRestartState = () => {
     if (props.total !== '') {
         props.restartState()
-    } else {
-      return null
     }
+
+    return null
   }
 
   const displayResult = props.total !== '' ? <Result /> : ''
 
   return (
-    <div className="salePriceContainer">
+    <div className="sale-price-container">
       <h1>How Much</h1>
 
-      <div className="salePriceForm">
-        <div className="salePriceItem">
+      <div className="sale-price-form">
+        <div className="sale-price-item">
           <p>Price</p>
           <input  type="number"
                   placeholder="Enter Price"
                   name="price"
                   value={ props.price }
                   onClick={ setRestartState }
-                  onChange={ setPriceToReducer }>
+                  onChange={ setValueToState }>
           </input>
         </div>
 
-        <div className="salePriceItem">
+        <div className="sale-price-item">
           <p>Sale</p>
           <input  type="number"
                   placeholder="Enter discount"
-                  name="discount"
+                  name="saleDiscount"
                   value={ props.sale }
                   onClick={ setRestartState }
-                  onChange={ setSaleToReducer }>
+                  onChange={ setValueToState }>
           </input>
         </div>
 
-        <button className="submitButton" onClick={ setTotalToReducer }>Sumit</button>
+        <button className="submit-button" onClick={ setTotalToReducer }>Sumit</button>
       </div>
 
-      <div>
-        { displayResult }
-      </div>
-
-
+      { displayResult }
     </div>
   )
 }

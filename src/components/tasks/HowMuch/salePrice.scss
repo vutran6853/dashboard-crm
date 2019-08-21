@@ -1,0 +1,48 @@
+$background_color_lightblue: lightblue;
+
+@mixin display_flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.sale-price-container {
+  @include display_flex_column;
+  background-color: lightslategray;
+  width: 100%;
+  align-items: center;
+
+  .sale-price-form {
+    @include display_flex_column;
+    height: 20rem;
+    width: 30rem;
+    background-color: #FFF;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .sale-price-item > input {
+    width: 10rem;
+  }
+
+  .submit-button {
+    background-color: $background_color_lightblue;
+    border-style: none;
+    color: white;
+    width: 10rem;
+    box-shadow: 2px 2px $background_color_lightblue;
+    cursor: pointer;
+
+    &:hover {
+      background-color: blue;
+      box-shadow: none;
+    }
+  }
+
+  .result-container {
+    width: 30rem;
+    background-color: $background_color_lightblue;
+  }
+}

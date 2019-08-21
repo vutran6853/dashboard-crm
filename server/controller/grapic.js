@@ -1,4 +1,5 @@
 const userHistoryInfo = (req, res, next) => {
+  // console.log('enter userHistoryInfo()');
   let dbInstance = req.app.get('db')
 
   dbInstance.getUserHistoryInfo(req.params.id)

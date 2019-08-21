@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUserInfo } from '../../../duck/grapicReducer'
+import { fetchUserInfo, fetchFakeUserInfo } from '../../../duck/grapicReducer'
 import DisplayBook from './DisplayBook'
 import DisplayDrink from './DisplayDrink'
 import DisplayFood from './DisplayFood'
@@ -8,9 +8,7 @@ import DisplayGas from './DisplayGas'
 import './displayGrapic.css'
 
 class Grapic extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+    state = {
       gasData: [],
       drinkData: [],
       bookData: [],
@@ -19,19 +17,29 @@ class Grapic extends Component {
       nameLabel: ['Gas', 'Drink', 'Book', 'Food'],
       monthName: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     }
-  }
 
   componentDidMount() {
     // console.log('enter componentDidMount')
-    this.props.auth.authBool ?
-    this.props.fetchUserInfo(this.props.auth.userID)
-    .then((response) => {
-      let gas = []
-      let drink = []
-      let book = []
-      let food = []
+    // console.log("%c Unable to get user info at handleGetUserInfo()!", "color: red; font-size:1rem;")
+
+    this.props.auth.authBool ? this.handleGetUserInfo() : this.handleGetFakeUserInfo()
+  }
+
+  componentWillUnmount() {
+    console.log('exit componentWillUnmount')
+  }
+
+
+  handleGetUserInfo = async () => {
+    console.log('enter');
+    let gas = []
+    let drink = []
+    let book = []
+    let food = []
+    try {
+      let response = await this.props.fetchUserInfo(this.props.auth.userID)
+    
       response.value.data.filter((value) => {
-        // console.log(value.item, index)
         if (value.item === 'Gas') {
           gas.push(value)
         }
@@ -45,56 +53,90 @@ class Grapic extends Component {
           return food.push(value)
         }
       })
-
+      
       this.setState({ gasData: gas })
       this.setState({ drinkData: drink })
       this.setState({ bookData: book })
       this.setState({ foodData: food })
-      return response
-    })
-    .then((response) => {
-      // console.log(response.value.data)
       this.setState({ allData: response.value.data })
-    })
-    .catch((err) => console.error('unable to get user info at fetchUserInfo()', err))
-    : this.displayFakeData()
+    }
+    catch {
+      console.log("%c Unable to get user info at handleGetUserInfo()!", "color: red; font-size:1rem;")
+    }
   }
 
-  componentWillUnmount() {
-    console.log('exit componentWillUnmount')
-  }
+  handleGetFakeUserInfo = async () => {
+    console.log('enter handleGetFakeUserInfo')
 
-  handleSelectMonth = (e) => {
-    const { allData } = this.state
     let gas = []
     let drink = []
     let book = []
     let food = []
-
-    let me = allData.filter((value, index) => {
-        console.log(value.purchase_date, index)
-        if (value.purchase_date.includes(e.target.value) && value.item === 'Gas') {
-          // console.log('purchase_date', value.purchase_date)
-          return gas.push(value)
+    try {
+      let response = await this.props.fetchFakeUserInfo()
+    
+      response.value.data.filter((value) => {
+        if (value.item === 'Gas') {
+          gas.push(value)
         }
-        if (value.purchase_date.includes(e.target.value) && value.item === 'Drink') {
-          // console.log('purchase_date', value.purchase_date)
+        if (value.item === 'Drink') {
           return drink.push(value)
         }
-        if (value.purchase_date.includes(e.target.value) && value.item === 'Book') {
-          // console.log('purchase_date', value.purchase_date)
+        if (value.item === 'Book') {
           return book.push(value)
         }
-        if (value.purchase_date.includes(e.target.value) && value.item === 'Food') {
-          // console.log('purchase_date', value.purchase_date)
+        if (value.item === 'Food') {
           return food.push(value)
         }
+      })
+      
+      this.setState({ gasData: gas })
+      this.setState({ drinkData: drink })
+      this.setState({ bookData: book })
+      this.setState({ foodData: food })
+      this.setState({ allData: response.value.data })
+    }
+    catch {
+      console.log("%c Unable to get user info at handleGetFakeUserInfo()!", "color: red; font-size:1rem;")
+    }
+
+  }
+
+  handleSelectMonth = (e) => {
+    let { allData } = this.state
+    let gas = []
+    let drink = []
+    let book = []
+    let food = []
+console.log(e.target.value)
+    allData.filter((value, index) => {
+      // console.log(value.purchase_date, index)
+      if (value.purchase_date.includes(e.target.value) && value.item === 'Gas') {
+        return gas.push(value)
+      }
+      if (value.purchase_date.includes(e.target.value) && value.item === 'Drink') {
+        return drink.push(value)
+      }
+      if (value.purchase_date.includes(e.target.value) && value.item === 'Book') {
+        return book.push(value)
+      }
+      if (value.purchase_date.includes(e.target.value) && value.item === 'Food') {
+        return food.push(value)
+      }
     })
 
     this.setState({ gasData: gas })
     this.setState({ drinkData: drink })
     this.setState({ bookData: book })
     this.setState({ foodData: food })
+  }
+
+  setCurrentDate = () => {
+    // console.log('enter')
+    let currentDate = new Date()
+    console.log(currentDate.getFullYear());
+    console.log(`0${ currentDate.getMonth() + 1 }-${ currentDate.getFullYear() }`);
+    return `${ currentDate.getMonth() + 1 }-${ currentDate.getFullYear() }`
   }
 
 
@@ -113,7 +155,7 @@ class Grapic extends Component {
     //   )
     // }
 
-    // const displayFakeData = (props) => {
+    // const handleGetFakeUserInfo = (props) => {
     //   console.log('enter displayFakeData', props)
     //   return (
     //     <div>
@@ -135,7 +177,7 @@ class Grapic extends Component {
         <select name="type" onChange={ (e) => this.handleSelectMonth(e) }>
           { displayTypeName }
         </select>
-        <input type="month" name="month" onChange={ (e) => this.handleSelectMonth(e) } />
+        <input type="month" name="month" value={ `${ this.setCurrentDate() }` } onChange={ (e) => this.handleSelectMonth(e) } />
         {/* <input type="" value=""/> */}
         <div className="grapicContainer">
           <DisplayGas gasData={ this.state.gasData } name={ this.state.nameLabel[0] } />
@@ -160,4 +202,4 @@ const mapPropToState = (state) => {
   }
 }
 
-export default connect(mapPropToState, { fetchUserInfo })( Grapic)
+export default connect(mapPropToState, { fetchUserInfo, fetchFakeUserInfo })( Grapic)

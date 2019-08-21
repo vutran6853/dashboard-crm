@@ -15,14 +15,22 @@ const fetchUserInfo = (passValue) => {
   console.log('enter passValue = ', passValue)
   return {
     type: FETCH,
-    payload: axios.get(`api/graphic/${passValue}`)
+    payload: axios.get(`/api/graphic/${passValue}`)
+  }
+}
+
+const fetchFakeUserInfo = () => {
+  console.log('enter fetchFakeUserInfo reducer')
+  return {
+    type: FETCH,
+    payload: axios.get('/api/graphic/0')
   }
 }
 
 function grapicReducer(state = initalState, action) {
   switch(action.type) {
     case `${FETCH}_FULFILLED`:
-      console.log('enter fetchhh', action.payload.data)
+      // console.log('enter fetchhh', action.payload.data)
       return {
         ...state,
         data1: action.payload.data
@@ -37,5 +45,6 @@ function grapicReducer(state = initalState, action) {
 export default grapicReducer
 
 export {
-  fetchUserInfo
+  fetchUserInfo,
+  fetchFakeUserInfo
 }

@@ -18,6 +18,5 @@ CREATE TABLE spend (
 	user_id INTEGER REFERENCES USERS (user_id)
 )
 
-
 INSERT INTO SPEND(item, price, user_id) 
 VALUES ('food', 30, 3)

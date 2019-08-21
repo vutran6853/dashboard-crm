@@ -6,10 +6,10 @@ const EMAIL = 'EMAIL'
 const RESETSTATE = 'RESETSTATE'
 
 const initialState = {
-  userID: '1',
+  userID: '0',
   username: '',
   userEmail: '',
-  authBool: true,
+  authBool: false,
   errorBool: null,
   successBool: null,
   errorMessage: 'Unable to find username or incorrent passowrd',

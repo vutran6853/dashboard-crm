@@ -1,0 +1,33 @@
+@mixin diplay_flex_row_justify_center_align_center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-container {
+  background-color: lightblue;
+  height: 100vh;
+  min-width: 10rem;
+
+  .navbar-item {
+    background-color: gainsboro;
+    height: 50px;
+    width: 100%;
+
+    &:hover {
+      background-color: lightblue;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+
+      p {
+        @include diplay_flex_row_justify_center_align_center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

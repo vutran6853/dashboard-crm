@@ -13,6 +13,7 @@ const { userHistoryInfo } = require('./controller/grapic')
 app.use(cors())
 app.use(express.json())
 
+// Middleware Connect To Postgre Database
 massive(process.env.CONNECT_STRING)
 .then((dbInstance => {
   app.set('db', dbInstance)

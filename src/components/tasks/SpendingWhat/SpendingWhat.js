@@ -2,42 +2,44 @@ import React from 'react'
 import PropTypes  from 'prop-types'
 import { connect } from 'react-redux'
 import { setSpendItem, setSpendPrice, setResetState, setPurchaseDate, postToDB } from '../../../duck/spendReducer'
+import './spendingWhat.scss'
 
 function SpendingWhat(props) {
-  const displaySelectItem = props.spend.selectItem.map((value) => (
-    <option key={value}>{ value }</option>
-  ))
 
-  const setItemToReducer = (e) => {
-    return props.setSpendItem(e.target.value)
+  const handlePassValueToReducer = (e) => {
+    if (e.target.name === 'price') {
+      return props.setSpendPrice(parseInt(e.target.value))
+    }
+
+    if (e.target.name === 'item') {
+      return props.setSpendItem(e.target.value)
+    }
+
+    if (e.target.name === 'purchaseDate') {
+      return props.setPurchaseDate(e.target.value)
+    }
+
+    return null
   }
 
-  const setPurchaseDateToReducer = (e) => {
-    return props.setPurchaseDate(e.target.value)
-  }
-
-  const setPriceToReducer = (e) => {
-    return props.setSpendPrice(parseInt(e.target.value))
-  }
-
-  const saveToDB = () => {
-    console.log(props);
+  const handleSaveToDB = () => {
+    // console.log(props);
     if (props.spend.price !== '' && props.spend.item !== '' && props.spend.purchaseDate !== '') {
-      if (props.auth.userID !== '') {
+      if (props.auth.userID !== '0' && props.auth.authBool === true) {
         console.log('true user login in save this data')
-        postToDB()
+        handlePostToDB()
       } else {
-        console.log('false user not login to save this data')
-        // alert('Please login in to save your data')
+        // console.log('false user not login to save this data')
+        alert('Please login in to save your data')
         props.setResetState()
       }
     } else {
-      console.log(false)
+      // console.log(false)
       alert('Please fill in your infomation')
     }
   }
 
-  const postToDB = () => {
+  const handlePostToDB = () => {
     let data = {
       id: props.auth.userID,
       item: props.spend.item,
@@ -53,33 +55,45 @@ function SpendingWhat(props) {
       }
       props.setResetState()
     })
-    .catch((err) => console.error('Unable to save to DB. Try again ', err))
+    .catch((err) => console.log("%c Unable to post to db at handlePostToDB()!", "color: red; font-size:1rem;", err))
   }
 
+  const displaySelectItem = props.spend.selectItem.map((value) => (
+    <option key={value}>{ value }</option>
+  ))
 
   return (
-    <div>
-      SpendingWhat Components
-      <select name="item" value={ props.spend.item } onChange={ setItemToReducer }>
-          { displaySelectItem }
-      </select>
+    <div className="spendingWhat-container">
+      <h1>SpendingWhat Components</h1>
 
-      <input  type="number"
-              name="price"
-              value={ props.spend.price }
-              placeholder="Enter Price..."
-              onChange={ setPriceToReducer }
-      />
-      <input  type="date"
-              name="purchaseDate"
-              value={ props.spend.purchaseDate }
-              placeholder="Enter Date..."
-              onChange={ setPurchaseDateToReducer }
-      />
+      <div className="spendingWhat-form">
+        <div>
+          <h3>Type</h3>
+          <select name="item" value={ props.spend.item } onChange={ handlePassValueToReducer }>
+            { displaySelectItem }
+          </select>
+        </div>
+        <div>
+          <h3>Price</h3>
+          <input  type="number"
+                  name="price"
+                  value={ props.spend.price }
+                  placeholder="Enter Price..."
+                  onChange={ handlePassValueToReducer }
+          />
+        </div>
+        <div>
+          <h3>Date</h3>
+          <input  type="date"
+                  name="purchaseDate"
+                  value={ props.spend.purchaseDate }
+                  placeholder="Enter Date..."
+                  onChange={ handlePassValueToReducer }
+          />
+        </div>
+        <button className="submit" onClick={ handleSaveToDB }>Submit</button>
+      </div>
 
-      <button onClick={ saveToDB }>Submit</button>
-
-      <br/>
       <p>To see your data in graphic Go to Task -> under graphic</p>
     </div>
   )
