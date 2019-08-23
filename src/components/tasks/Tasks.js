@@ -25,6 +25,11 @@ class Tasks extends Component {
         <button onClick={ () => this.handleRouteTo('grapic') }>
           Grapic
         </button>
+
+        <button onClick={ () => this.handleRouteTo('house') }>
+          house
+        </button>
+
       </div>
     )
   }

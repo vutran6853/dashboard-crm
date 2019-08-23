@@ -9,6 +9,7 @@ const { register, login, updateEmail, updatePassword } = require('./controller/a
 const { contacts } = require('./controller/contacts')
 const { postDailySpend } = require('./controller/spend')
 const { userHistoryInfo } = require('./controller/grapic')
+const { postHouseUtites, postHousePayment, getHouseHistory } = require('./controller/house')
 
 app.use(cors())
 app.use(express.json())
@@ -26,12 +27,15 @@ app.post('/api/login', login)
 
 app.get('/api/contacts', contacts)
 app.get('/api/graphic/:id', userHistoryInfo)
+app.get('/api/house/history/:id', getHouseHistory)
 
 
 app.put('/api/update/email', updateEmail)
 app.put('/api/update/password', updatePassword)
 
 app.post('/api/spend/daily', postDailySpend)
+app.post('/api/house', postHouseUtites)
+app.post('/api/house/payment', postHousePayment)
 
 
 app.listen(PORT, () => console.log('API server is UP and listen to port:', PORT))

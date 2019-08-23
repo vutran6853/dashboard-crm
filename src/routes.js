@@ -13,6 +13,8 @@ import Signup from './components/auth/SignUp'
 import Grapic from './components/tasks/graphic/Grapic'
 import HowMuch from './components/tasks/howMuch/SalePrice'
 import SpendingWhat from './components/tasks/SpendingWhat/SpendingWhat'
+import House from './components/tasks/house/House'
+import HouseGraphic from './components/tasks/house/HouseGraphic'
 
 const route = (
   <Switch>
@@ -24,7 +26,8 @@ const route = (
     <Route path='/Tasks/grapic' component={ Grapic } />
     <Route path='/Tasks/how_much' component={ HowMuch } />
     <Route path='/Tasks/spending_what' component={ SpendingWhat } />
-
+    <Route path='/Tasks/house' component={ House } />
+    <Route path='/house/graphic' component={ HouseGraphic } />
 
     <Route path='/Contacts' component={ Contacts } />
     <Route path='/Chat' component={ Chat } />
