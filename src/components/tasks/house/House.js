@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import './house.scss'
 
 class House extends Component {
   state = {
@@ -18,7 +19,8 @@ class House extends Component {
       year: '',
       month: ''
     },
-    payment: ''
+    payment: '',
+    monthText: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }
 
   componentDidMount() {
@@ -85,7 +87,7 @@ class House extends Component {
 
   handleSetYear = (e) => {
     let { selected_date } = this.state
-    this.setState({ 
+    this.setState({
       selected_date: {
         ...selected_date,
         year: e.target.value
@@ -136,43 +138,39 @@ class House extends Component {
 
 
   render() {
-    let { utites, range_date } = this.state
+    let { utites, range_date, monthText } = this.state
 
-    let displayYear = range_date.map((value, index) => {
-      return (
-        <option key={ index } value={ value }>{ value }</option>
-      )
-    })
+    let displayYear = range_date.map((value, index) => (
+      <option key={ index } value={ value }>{ value }</option>
+    ))
 
+    let displayMonth = monthText.map((value, index) => (
+      <option key={ value } value={ index + 1 } >{ value }</option>
+    ))
 
     return (
-      <div>
-        House
-        <p>Month</p>
-        <select onChange={ (e) => this.handleSetMonth(e) }>
-          <option value="---">---</option>
-          <option name="Jan" value="1">January</option>
-          <option value="2">February</option>
-          <option value="3">March</option>
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
+      <div className="house-container">
+        <div className="house_item">
+          <div className="house_inner_item">
+            <div>
+              <h3>Month</h3>
+              <select onChange={ (e) => this.handleSetMonth(e) }>
+                <option value="---">---</option>
+                { displayMonth }
+              </select>
+            </div>
+            <div>
+              <h3>year</h3>
+              <select onChange={ (e) => this.handleSetYear(e) }>
+                { displayYear }
+              </select>
+            </div>
+          </div>
 
-        <p>year</p>
-        <select onChange={ (e) => this.handleSetYear(e) }>
-          {/* { this.handleCreateRangeOfYear() } */}
-          { displayYear }
-        </select>
+        
 
-        <div>
-          <p>utites section</p>
+          <div>
+          <h3>Utites Section</h3>
           <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
           <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
           <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
@@ -180,14 +178,30 @@ class House extends Component {
           <button onClick={ this.handleSubmitUtites } >Submit</button>
         </div>
 
+
+
         <div>
           <p>house payment</p>
           <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/>
           <button onClick={ this.handleSubmitHousePayment } >Submit</button>
-
         </div>
 
         <Link to="/house/graphic">View Home Graphic</Link>
+
+        </div>
+
+
+
+
+        {/* <div>
+          <p>utites section</p>
+          <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
+          <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
+          <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
+          <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric"/>
+          <button onClick={ this.handleSubmitUtites } >Submit</button>
+        </div> */}
+
         {/* <button onClick={ this.handleRouteToHomeGraphic }>View Home Graphic</button> */}
 
       </div>

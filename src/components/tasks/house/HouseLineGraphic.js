@@ -2,15 +2,15 @@ import React from 'react'
 import { Line, Bar, Doughnut, HorizontalBar, Pie, Scatter } from 'react-chartjs-2'
 
 function HouseLineGraphic(props) {
-  console.log('props', props)
+  // console.log('props', props)
   let displayPayment = props.data.map((value) => value.house_payment_payment)
   let displayPaymentDate = props.data.map((value) => {
     // console.log(value.house_payment_date)
     return [value.house_payment_date]
   })
 
-  console.log('displayPayment', displayPayment)
-  console.log('displayPaymentDate', displayPaymentDate.flat())
+  // console.log('displayPayment', displayPayment)
+  // console.log('displayPaymentDate', displayPaymentDate.flat())
 
   // let displayPurchaseDate = props.data.map((value) => {
   //   let date = new Date(value.purchase_date)

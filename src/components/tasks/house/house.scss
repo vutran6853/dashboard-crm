@@ -1,0 +1,26 @@
+.house-container {
+  background-color: lightskyblue;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .house_item {
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+    // align-self: center;
+    height: 50rem;
+    margin: auto;
+    // text-align: center;
+    // justify-content: space-between;
+
+    
+    .house_inner_item {
+      display: flex;
+      flex-direction: row;
+      // border: 2px solid red;
+      justify-content: space-evenly;
+    }
+  }
+}
