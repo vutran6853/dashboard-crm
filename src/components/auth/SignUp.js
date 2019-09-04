@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signUp } from '../../duck/authReducer'
+import { signUpAction } from '../../duck/authReducer'
 import './auth.scss'
 
 class Login extends Component {
@@ -23,7 +23,7 @@ class Login extends Component {
         password: this.state.password 
       }
 
-      this.props.signUp(data)
+      this.props.signUpAction(data)
       this.setState({ username: '', password: '' })
 
     } else {
@@ -47,14 +47,14 @@ class Login extends Component {
                     value={ this.state.username } 
                     name="username"
                     onChange={ this.handleSetUserInfo } 
-                    placeholder='Enter username'>
-            </input>
+                    placeholder='Enter username'
+            />
             <input  type="password"
                     value={ this.state.password } 
                     name="password"
                     onChange={ this.handleSetUserInfo } 
-                    placeholder='Enter password'>
-            </input>
+                    placeholder='Enter password'
+            />
           </div>
           <div className="auth-button-area">
             <button onClick={ this.handleSignUp }>Submit</button>
@@ -68,4 +68,4 @@ class Login extends Component {
 
 const mapPropToState = (state) => state
 
-export default connect(mapPropToState, { signUp })(Login)
+export default connect(mapPropToState, { signUpAction })(Login)

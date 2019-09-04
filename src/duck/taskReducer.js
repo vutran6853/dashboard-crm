@@ -1,13 +1,12 @@
 // Reducer Type
-const ADDLIST = 'ADDLIST'
-const ADDPRICE = 'ADDPRICE'
+const ADD_LIST = 'ADD_LIST'
+const ADD_PRICE = 'ADD_PRICE'
 const SALE = 'SALE'
-const SALEDISCOUNT = 'SALEDISCOUNT'
+const SALE_DISCOUNT = 'SALE_DISCOUNT'
 const TOTAL = 'TOTAL'
-const RESETSTATE = 'RESETSTATE'
+const RESET_STATE = 'RESET_STATE'
 
 const initialState = {
-  // item: [],
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc'],
   price: 0,
   item: '',
@@ -16,58 +15,56 @@ const initialState = {
   total: ''
 }
 
-function setPrice(passValue) {
-  // console.log('hit additem', passValue)
+function setPriceAction(passValue) {
   return {
-    type: ADDPRICE,
+    type: ADD_PRICE,
     payload: passValue
   }
 }
 
-function setSale(passValue) {
+function setSaleAction(passValue) {
   return {
     type: SALE,
     payload: passValue
   }
 }
 
-function setTotal(passValue) {
+function setTotalAction(passValue) {
   return {
     type: TOTAL,
     payload: passValue
   }
 }
 
-function setItem(passValue) {
+function setItemAction(passValue) {
   return {
-    type: ADDLIST,
+    type: ADD_LIST,
     payload: passValue
   }
 }
 
-function setSaleDiscount(passValue) {
+function setSaleDiscountAction(passValue) {
   return {
-    type: SALEDISCOUNT,
+    type: SALE_DISCOUNT,
     payload: passValue
   }
 }
 
-function restartState() {
+function restartStateAction() {
   return {
-    type: RESETSTATE,
+    type: RESET_STATE,
     payload: null
   }
 }
 
 function taskReducer(state = initialState, action) {
   switch(action.type) {
-    case ADDPRICE:
-      // console.log('hit additem taskReducer')
+    case ADD_PRICE:
       return {
         ...state,
         price: action.payload
       }
-    case ADDLIST:
+    case ADD_LIST:
       return {
         ...state,
         item: action.payload
@@ -82,12 +79,12 @@ function taskReducer(state = initialState, action) {
         ...state,
         total: action.payload
       }
-    case SALEDISCOUNT: 
+    case SALE_DISCOUNT: 
       return {
         ...state,
         saleDiscount: action.payload
       }
-    case RESETSTATE:
+    case RESET_STATE:
       return {
         ...state,
         price: 0,
@@ -102,10 +99,10 @@ function taskReducer(state = initialState, action) {
 export default taskReducer
 
 export {
-  setPrice,
-  setSale,
-  setTotal,
-  setItem,
-  setSaleDiscount,
-  restartState
+  setPriceAction,
+  setSaleAction,
+  setTotalAction,
+  setItemAction,
+  setSaleDiscountAction,
+  restartStateAction
 }

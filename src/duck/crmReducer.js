@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const ADDLIST = 'ADDLIST'
+const ADD_LIST = 'ADD_LIST'
 const ADDPRICE = 'ADDPRICE'
 const ADDBOTH = 'ADDBOTH'
 const GETCONTACTS = 'GETCONTACTS'
@@ -12,29 +12,29 @@ const initialState = {
   contactsList: []
 }
 
-function getContactsList() {
-  console.log('hit getContactsList')
+function getContactsListAction() {
+  console.log('hit getContactsListAction')
   return {
     type: GETCONTACTS,
     payload: axios.get('/api/contacts')
   }
 }
 
-function setSelect(passValue) {
+function setSelectAction(passValue) {
   return {
-    type: ADDLIST,
+    type: ADD_LIST,
     payload: passValue
   }
 }
 
-function setPrice(passValue) {
+function setPriceAction(passValue) {
   return {
     type: ADDPRICE,
     payload: passValue
   }
 }
 
-function setBoth(name, passValue) {
+function setBothAction(name, passValue) {
   return {
     type: ADDBOTH,
     payload: [name, passValue]
@@ -42,9 +42,8 @@ function setBoth(name, passValue) {
 }
 
 function crmReducer(state = initialState, action) {
-  // console.log('action', action.payload)
   switch(action.type) {
-    case `${ ADDLIST }_FULFILLED`:
+    case `${ ADD_LIST }_FULFILLED`:
       return {
         ...state,
         item: action.payload
@@ -72,8 +71,8 @@ function crmReducer(state = initialState, action) {
 export default crmReducer
 
 export {
-  getContactsList,
-  setSelect,
-  setPrice,
-  setBoth
+  getContactsListAction,
+  setSelectAction,
+  setPriceAction,
+  setBothAction
 }

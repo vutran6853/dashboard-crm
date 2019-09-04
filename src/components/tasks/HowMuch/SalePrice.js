@@ -2,8 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes  from 'prop-types'
 import Result from './Result'
-import { setPrice, setItem, setSale, setTotal, setSaleDiscount, restartState } from '../../../duck/taskReducer'
-
+import { 
+  setPriceAction, 
+  setItemAction, 
+  setSaleAction, 
+  setTotalAction, 
+  setSaleDiscountAction, 
+  restartStateAction 
+} from '../../../duck/taskReducer'
 import './salePrice.scss'
 
 function SalePrice(props) {
@@ -14,11 +20,11 @@ function SalePrice(props) {
     // }
 
     if (e.target.name === 'price') {
-      props.setPrice(parseInt(e.target.value))
+      props.setPriceAction(parseInt(e.target.value))
     }
 
     if (e.target.name === 'saleDiscount') {
-      props.setSale(parseInt(e.target.value))
+      props.setSaleAction(parseInt(e.target.value))
     }
 
     return null
@@ -29,19 +35,19 @@ function SalePrice(props) {
     let discount =  (props.sale / 100)
     let saleDiscount = (discount * price)
     let total = price - saleDiscount
-    props.setSaleDiscount(saleDiscount)
-    props.setTotal(total)
+    props.setSaleDiscountAction(saleDiscount)
+    props.setTotalAction(total)
   }
 
   const setRestartState = () => {
     if (props.total !== '') {
-        props.restartState()
+        props.restartStateAction()
     }
 
     return null
   }
 
-  const displayResult = props.total !== '' ? <Result /> : ''
+  const isTotalShowResult = props.total !== '' ? <Result /> : ''
 
   return (
     <div className="sale-price-container">
@@ -73,15 +79,13 @@ function SalePrice(props) {
         <button className="submit-button" onClick={ setTotalToReducer }>Sumit</button>
       </div>
 
-      { displayResult }
+      { isTotalShowResult }
     </div>
   )
 }
 
 // Map Props From Reducer To Component
-const mapPropToState = (state) => {
-  return state.task
-}
+const mapPropToState = (state) => state.task
 
 // Props Type
 SalePrice.propTypes = {
@@ -90,5 +94,4 @@ SalePrice.propTypes = {
   saleDiscount: PropTypes.number
 }
 
-export default connect(mapPropToState, { setPrice, setItem, setSale, setTotal, setSaleDiscount, restartState }) (SalePrice)
-
+export default connect(mapPropToState, { setPriceAction, setItemAction, setSaleAction, setTotalAction, setSaleDiscountAction, restartStateAction }) (SalePrice)

@@ -8,13 +8,8 @@ class Navbar extends Component {
     navbarItem: ['Dashboard', 'Tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
   }
 
-
-  lowerFirstChar(passValue) {
-    console.log('passValue =', passValue)
-  }
-
   render() {
-    let displayItem = this.state.navbarItem.map((value, index) => {
+    let displayItem = this.state.navbarItem.map((value) => {
       return (
         <div className="navbar-item" key={value}>
           <Link to={ `/${value}` }>
@@ -30,10 +25,8 @@ class Navbar extends Component {
 
     return (
       <div className="navbar-container">
-        <div>
-          { displayUserInfo }
-          { displayItem }
-        </div>
+        { displayUserInfo }
+        { displayItem }
       </div>
     )
   }
@@ -43,4 +36,4 @@ const mapPropToState = (state) => {
   return state.auth
 }
 
-export default connect(mapPropToState, {  })(Navbar)
+export default connect(mapPropToState, {})(Navbar)

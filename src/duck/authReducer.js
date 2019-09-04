@@ -1,9 +1,9 @@
 import axios from "axios"
 
-const LOGININ = 'LOGININ'
-const SIGNUP = 'SIGNUP'
+const LOGIN_IN = 'LOGIN_IN'
+const SIGN_UP = 'SIGN_UP'
 const EMAIL = 'EMAIL'
-const RESETSTATE = 'RESETSTATE'
+const RESET_STATE = 'RESET_STATE'
 
 const initialState = {
   userID: '0',
@@ -17,47 +17,45 @@ const initialState = {
   failMessage: 'Unable to update.Try again'
 }
 
-function restartState() {
+function restartStateAction() {
   return {
-    type: RESETSTATE,
+    type: RESET_STATE,
     payload: null
   }
 }
 
-function signUp(passValue) {
+function signUpAction(passValue) {
   return {
-    type: SIGNUP,
+    type: SIGN_UP,
     payload: axios.post('/api/register', { passValue })
   }
 }
 
-function loginIn(passValue) {
+function loginInAction(passValue) {
   return {
-    type: LOGININ,
+    type: LOGIN_IN,
     payload: axios.post('/api/login', { passValue })
   }
 }
 
-function updateEmail(passValue) {
-console.log('passValue', passValue)
+function updateEmailAction(passValue) {
   return {
     type: EMAIL,
     payload: axios.put(`/api/update/email`, passValue)
   }
 }
 
-function updatePassword(passValue) {
-  console.log('passValue', passValue)
-    return {
-      type: EMAIL,
-      payload: axios.put(`/api/update/password`, passValue)
-    }
+function updatePasswordAction(passValue) {
+  return {
+    type: EMAIL,
+    payload: axios.put(`/api/update/password`, passValue)
   }
+}
 
 
 function authReducer(state = initialState, action) {
   switch(action.type) {
-    case `${SIGNUP}_FULFILLED`:
+    case `${SIGN_UP}_FULFILLED`:
       return {
         ...state,
         username: action.payload.data[0].users_username,
@@ -65,7 +63,7 @@ function authReducer(state = initialState, action) {
         authBool: true
       }
 
-    case `${LOGININ}_FULFILLED`:
+    case `${LOGIN_IN}_FULFILLED`:
       return {
         ...state,
         username: action.payload.data[0].users_username,
@@ -73,15 +71,13 @@ function authReducer(state = initialState, action) {
         authBool: true
       }
 
-    case `${LOGININ}_REJECTED`:
-      console.log('hit LOGININ_REJECTED ')
+    case `${LOGIN_IN}_REJECTED`:
       return {
         ...state,
         authBool: false
       }
 
     case `${EMAIL}_FULFILLED`:
-      console.log('hit EMAIL_FULFILLED ')
       return {
         ...state,
         successBool: true
@@ -93,7 +89,7 @@ function authReducer(state = initialState, action) {
         errorBool: true
       }
     
-    case RESETSTATE:
+    case RESET_STATE:
       return {
         ...state,
         errorBool: null,
@@ -109,9 +105,9 @@ function authReducer(state = initialState, action) {
 export default authReducer
 
 export {
-  restartState,
-  signUp,
-  loginIn,
-  updateEmail,
-  updatePassword
+  restartStateAction,
+  signUpAction,
+  loginInAction,
+  updateEmailAction,
+  updatePasswordAction
 }

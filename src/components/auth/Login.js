@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginIn } from '../../duck/authReducer'
+import { loginInAction } from '../../duck/authReducer'
 import PropTypes from 'prop-types'
 import './auth.scss'
 
@@ -24,14 +24,11 @@ class Login extends Component {
         password: this.state.password 
       }
 
-      this.props.loginIn(data)
+      this.props.loginInAction(data)
       this.setState({ username: '', password: '' })
-      
     } else {
-
       console.log('false', false)
     }
-
   }
 
   handleRouterToSignUp = () => {
@@ -48,14 +45,14 @@ class Login extends Component {
                     value={ this.state.username } 
                     name="username"
                     onChange={ this.handleSetUserInfo } 
-                    placeholder='Enter username'>
-            </input>
+                    placeholder='Enter username'
+            />
             <input  type="password"
-                    value={ this.state.password } 
+                    value={ this.state.password }
                     name="password"
                     onChange={ this.handleSetUserInfo } 
-                    placeholder='Enter password'>
-            </input>
+                    placeholder='Enter password'
+            />
           </div>
           <div className="auth-button-area">
             <button onClick={ this.handleLoginIn }>Submit</button>
@@ -69,9 +66,9 @@ class Login extends Component {
 
 // Type Checking
 Login.propTypes = {
-  loginIn: PropTypes.func
+  loginInAction: PropTypes.func
 }
 
 const mapPropToState = (state) => state
 
-export default connect(mapPropToState, { loginIn })(Login)
+export default connect(mapPropToState, { loginInAction })(Login)

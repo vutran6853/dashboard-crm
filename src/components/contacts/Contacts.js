@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getContactsList } from '../../duck/crmReducer'
+import { getContactsListAction } from '../../duck/crmReducer'
 import PropTypes from 'prop-types'
 import './contacts.css'
 
@@ -8,7 +8,7 @@ class Contacts extends Component {
   // state = {  }
 
   componentDidMount() {
-    this.props.getContactsList()
+    this.props.getContactsListAction()
   }
   render() {
     console.log('this.prpps', this.props)
@@ -41,4 +41,4 @@ Contacts.propTypes = {
   contactsList: PropTypes.array.isRequired
 }
 
-export default connect(mapPropToState, { getContactsList })(Contacts)
+export default connect(mapPropToState, { getContactsListAction })(Contacts)

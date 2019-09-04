@@ -64,7 +64,7 @@ class House extends Component {
   handleCreateRangeOfYear = () => {
     let time = new Date()
     let year = time.getFullYear()
-    let past = year - 5
+    let past = year - 1
     let future = year + 100
     let newArray = []
 
@@ -159,6 +159,7 @@ class House extends Component {
                 { displayMonth }
               </select>
             </div>
+
             <div>
               <h3>year</h3>
               <select onChange={ (e) => this.handleSetYear(e) }>
@@ -167,27 +168,42 @@ class House extends Component {
             </div>
           </div>
 
-        
-
-          <div>
           <h3>Utites Section</h3>
-          <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
-          <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
-          <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
-          <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric"/>
-          <button onClick={ this.handleSubmitUtites } >Submit</button>
-        </div>
+
+          <div className="house_utites_container">
+            <div className="house_utites_item">
+              <h3>Water</h3>
+              <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
+            </div>
+
+            <div className="house_utites_item">
+              <h3>Gas</h3>
+              <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
+            </div>
+
+            <div className="house_utites_item">
+              <h3>Internet</h3>
+              <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
+            </div>
+
+            <div className="house_utites_item">
+              <h3>Electri</h3>
+              <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric"/>
+            </div>
+
+            <button onClick={ this.handleSubmitUtites } >Submit</button>
+          </div>
 
 
 
-        <div>
-          <p>house payment</p>
+        <div className="house_payment_container">
+          <h3>house payment</h3>
           <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/>
           <button onClick={ this.handleSubmitHousePayment } >Submit</button>
         </div>
 
-        <Link to="/house/graphic">View Home Graphic</Link>
-
+        <Link to="/house/graphic">View Home paymentGraphic</Link>
+        <Link to="/house/graphic/utites">View Home Utites Graphic</Link>
         </div>
 
 

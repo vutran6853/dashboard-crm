@@ -30,6 +30,10 @@ class Tasks extends Component {
           house
         </button>
 
+        <button onClick={ () => this.handleRouteTo('room') }>
+          room
+        </button>
+
       </div>
     )
   }

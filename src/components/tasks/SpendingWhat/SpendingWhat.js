@@ -1,29 +1,28 @@
 import React from 'react'
 import PropTypes  from 'prop-types'
 import { connect } from 'react-redux'
-import { setSpendItem, setSpendPrice, setResetState, setPurchaseDate, postToDB } from '../../../duck/spendReducer'
+import { setSpendItemAction, setSpendPriceAction, setResetStateAction, setPurchaseDateAction, postToDBAction } from '../../../duck/spendReducer'
 import './spendingWhat.scss'
 
 function SpendingWhat(props) {
 
   const handlePassValueToReducer = (e) => {
     if (e.target.name === 'price') {
-      return props.setSpendPrice(parseInt(e.target.value))
+      return props.setSpendPriceAction(parseInt(e.target.value))
     }
 
     if (e.target.name === 'item') {
-      return props.setSpendItem(e.target.value)
+      return props.setSpendItemAction(e.target.value)
     }
 
     if (e.target.name === 'purchaseDate') {
-      return props.setPurchaseDate(e.target.value)
+      return props.setPurchaseDateAction(e.target.value)
     }
 
     return null
   }
 
   const handleSaveToDB = () => {
-    // console.log(props);
     if (props.spend.price !== '' && props.spend.item !== '' && props.spend.purchaseDate !== '') {
       if (props.auth.userID !== '0' && props.auth.authBool === true) {
         console.log('true user login in save this data')
@@ -31,7 +30,7 @@ function SpendingWhat(props) {
       } else {
         // console.log('false user not login to save this data')
         alert('Please login in to save your data')
-        props.setResetState()
+        props.setResetStateAction()
       }
     } else {
       // console.log(false)
@@ -47,13 +46,13 @@ function SpendingWhat(props) {
       purchaseDate: props.spend.purchaseDate
     }
 
-    props.postToDB(data)
+    props.postToDBAction(data)
     .then((response) => {
       console.log('response', response)
       if (response.value.data.length === 0) {
         alert('Success save to DB')
       }
-      props.setResetState()
+      props.setResetStateAction()
     })
     .catch((err) => console.log("%c Unable to post to db at handlePostToDB()!", "color: red; font-size:1rem;", err))
   }
@@ -115,7 +114,7 @@ SpendingWhat.propTypes = {
     price: PropTypes.number.isRequired
   }),
   auth: PropTypes.object.isRequired,
-  setResetState: PropTypes.func.isRequired
+  setResetStateAction: PropTypes.func.isRequired
 }
 
-export default connect(mapPropToState, { setSpendItem, setSpendPrice, setPurchaseDate, setResetState, postToDB })(SpendingWhat)
+export default connect(mapPropToState, { setSpendItemAction, setSpendPriceAction, setPurchaseDateAction, setResetStateAction, postToDBAction })(SpendingWhat)

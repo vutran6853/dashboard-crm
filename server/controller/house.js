@@ -32,8 +32,22 @@ const getHouseHistory = (req, res, next) => {
 
 }
 
+const postRoomPayment = (req, res, next) => {
+  console.log('hit backend')
+}
+
+const getHouseUtitles = (req, res, next) => {
+  let dbInstance = req.app.get('db')
+
+  dbInstance.getHousehistoryUtilites(req.params.id)
+  .then((response) => res.status(200).send(response))
+  .catch((err) => console.log('Unable to fetch getHouseUtitles()', err))
+}
+
 module.exports = {
   postHouseUtites,
   postHousePayment,
-  getHouseHistory
+  getHouseHistory,
+  postRoomPayment,
+  getHouseUtitles
 }

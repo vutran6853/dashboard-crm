@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "axios"
 
 const PRICE = 'PRICE'
 const ITEM = 'ITEM'
-const PURCHASEDATE = ' PURCHASEDATE'
+const PURCHASE_DATE = ' PURCHASE_DATE'
 const RESTART = 'RESTART'
 const POSTTODB = 'POSTTODB'
 
@@ -13,34 +13,34 @@ const initialState = {
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']
 }
 
-function setPurchaseDate(passValue) {
+function setPurchaseDateAction(passValue) {
   return {
-    type: PURCHASEDATE,
+    type: PURCHASE_DATE,
     payload: passValue
   }
 }
 
-function setSpendPrice(passValue) {
+function setSpendPriceAction(passValue) {
   return {
     type: PRICE,
     payload: passValue
   }
 }
 
-function setSpendItem(passValue) {
+function setSpendItemAction(passValue) {
   return {
     type: ITEM,
     payload: passValue
   }
 }
 
-function setResetState() {
+function setResetStateAction() {
   return {
     type: RESTART
   }
 }
 
-function postToDB(passValue) {
+function postToDBAction(passValue) {
   return {
     type: POSTTODB,
     payload: axios.post('http://localhost:3020/api/spend/daily', passValue)
@@ -59,7 +59,7 @@ function spendReducer(state = initialState, action) {
         ...state,
         item: action.payload
       }
-    case PURCHASEDATE: 
+    case PURCHASE_DATE: 
       return {
         ...state,
         purchaseDate : action.payload
@@ -80,9 +80,9 @@ function spendReducer(state = initialState, action) {
 export default spendReducer
 
 export {
-  setPurchaseDate,
-  setSpendPrice,
-  setSpendItem,
-  setResetState,
-  postToDB
+  setPurchaseDateAction,
+  setSpendPriceAction,
+  setSpendItemAction,
+  setResetStateAction,
+  postToDBAction
 }

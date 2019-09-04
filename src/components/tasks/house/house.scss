@@ -1,3 +1,5 @@
+$borderRed: 2px solid red;
+
 .house-container {
   background-color: lightskyblue;
   width: 100%;
@@ -21,6 +23,29 @@
       flex-direction: row;
       // border: 2px solid red;
       justify-content: space-evenly;
+    }
+
+    .house_utites_container {
+      // border: $borderRed;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      align-self: center;
+
+      .house_utites_item {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+      }
+    }
+
+    .house_payment_container {
+      // border: $borderRed;     
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      align-self: center;
+      margin-top: 100px;
     }
   }
 }

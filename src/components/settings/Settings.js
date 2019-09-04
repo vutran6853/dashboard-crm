@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import Navbar from '../navbar/Navbar'
 import { connect } from 'react-redux'
-import { updateEmail, updatePassword, restartState } from '../../duck/authReducer'
+import { updateEmailAction, updatePasswordAction, restartStateAction } from '../../duck/authReducer'
 
 class Settings extends Component {
   state = { 
@@ -15,36 +15,32 @@ class Settings extends Component {
   }
 
   handleSubmitInfo = (payload) => {
-    console.log('payload', payload)
-    if(this.state.email !== '' && payload === 'email') {
+    if (this.state.email !== '' && payload === 'email') {
       let data = {
         id: this.props.userID,
         newEmail: this.state.email
       }
-      console.log(true, 'email')
-      this.props.updateEmail(data)
+
+      this.props.updateEmailAction(data)
       this.setState({ email: '' })
-
-
     } else {
       console.log(false, 'email')
     }
 
-    if(this.state.password !== '' && payload === 'password') {
-      console.log(true, 'password')
+    if (this.state.password !== '' && payload === 'password') {
       let data = {
         id: this.props.userID,
         newPassword: this.state.password
       }
       // console.log(true, 'email')
-      this.props.updatePassword(data)
+      this.props.updatePasswordAction(data)
       this.setState({ password: '' })
 
     } else {
       console.log(false, 'password')
     }
 
-    if(this.state.username !== '' && payload === 'username') {
+    if (this.state.username !== '' && payload === 'username') {
       console.log(true, 'username')
     } else {
       console.log(false, 'username')
@@ -54,7 +50,7 @@ class Settings extends Component {
 
   testing() {
     alert('message sucess save ew change in db')
-    this.props.restartState()
+    this.props.restartStateAction()
   }
 
   render() {
@@ -116,4 +112,4 @@ const mapPropToState = (state) => {
   return state.auth
 }
 
-export default connect(mapPropToState, { updateEmail, updatePassword, restartState })(Settings)
+export default connect(mapPropToState, { updateEmailAction, updatePasswordAction, restartStateAction })(Settings)
