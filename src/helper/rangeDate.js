@@ -14,7 +14,7 @@ function handleCreateRangeOfYear() {
   // console.log(newArray)
   // return newArray
   // range_date.push('----', ...newArray)
-  return ['----', ...newArray]
+  return ['---', ...newArray]
 }
 
 

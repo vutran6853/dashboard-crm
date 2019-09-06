@@ -33,13 +33,13 @@ class House extends Component {
     this.setState({
       utites: {
         ...utites, 
-        [e.target.name]: e.target.value
+        [e.target.name]: parseFloat(e.target.value)
       }
     })
   }
 
   handleSubmitUtites = () => {
-    console.log('hit handleSubmitUtites')
+    // console.log('hit handleSubmitUtites')
     let { selected_date, utites } = this.state
     console.log('this', this.state)
     let newObj = {
@@ -47,6 +47,8 @@ class House extends Component {
       utites,
       houseID: 1
     }
+
+    console.log('newObj', newObj);
 
     axios.post('http://localhost:3020/api/house', newObj)
     .then((response) => {
@@ -119,15 +121,17 @@ class House extends Component {
       houseID: 1
     }
 
-    axios.post('http://localhost:3020/api/house/payment', newObj)
-    .then((response) => {
-      console.log('response', response)
-      if (response.data.length === 0) {
-        this.handleResetState()
-        // this.handleCreateRangeOfYear()
-      }
-    })
-    .catch(() => console.log('%c Unable post at handleSubmitHousePayment()', 'color: red; font-size: 1rem'))
+    // console.log('newObj', newObj);
+
+    // axios.post('http://localhost:3020/api/house/payment', newObj)
+    // .then((response) => {
+    //   console.log('response', response)
+    //   if (response.data.length === 0) {
+    //     this.handleResetState()
+    //     // this.handleCreateRangeOfYear()
+    //   }
+    // })
+    // .catch(() => console.log('%c Unable post at handleSubmitHousePayment()', 'color: red; font-size: 1rem'))
 
   }
 

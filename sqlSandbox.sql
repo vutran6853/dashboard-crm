@@ -22,11 +22,11 @@ INSERT INTO SPEND(item, price, user_id)
 VALUES ('food', 30, 3)
 
 CREATE TABLE utilites (
-	utilites_gas VARCHAR(255),
-	utilites_water VARCHAR(255),
-	utilites_electric VARCHAR(255),
+	utilites_gas numeric(15,2),
+	utilites_water numeric(15,2),
+	utilites_electric numeric(15,2),
+	utilites_internet numeric(15,2),
 	utilites_date VARCHAR(255),
-	utilites_internet VARCHAR(255),
 	home_id INTEGER REFERENCES house(house_id)
 )
 
