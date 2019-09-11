@@ -5,7 +5,7 @@ import './navbar.scss'
 
 class Navbar extends Component {
   state = {
-    navbarItem: ['Dashboard', 'Tasks', 'Email', 'Contacts', 'Chat', 'Deals', 'Settings', 'Login']
+    navbarItem: ['Dashboard', 'Tasks', 'Email', 'Contacts', 'Chat', 'Cryptocurrency', 'Settings', 'Login']
   }
 
   render() {

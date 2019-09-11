@@ -6,6 +6,8 @@ const USER_FETCH_TYPE = 'USER_FETCH_TYPE'
 const USER_CLEAR_UTITESDATA = 'USER_CLEAR_UTITESDATA'
 const USER_SELECT_YEAR = 'USER_SELECT_YEAR'
 const USER_FITLER_UTITESDATA = 'USER_FITLER_UTITESDATA'
+const USER_FETCH_TYPE2 = 'USER_FETCH_TYPE2'
+const USER_SELECT_GRAPHIC_TYPE ='USER_SELECT_GRAPHIC_TYPE'
 
 const initalState = {
   data1: [],
@@ -16,10 +18,13 @@ const initalState = {
   food: [],
   utitesLabel: ['---', 'overall', 'Water', 'Gas', 'Internet', 'Electri'],
   monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  grapicType: ['---', 'Bar', 'Line'],
   userSelectType: '---',
   userSelectYear: '---',
+  userSelectGrapicType: '---',
   userUtitesData: [],
-  userUtitesFilterData:[]
+  userUtitesFilterData:[],
+  userUtitesAllData: []
 }
 
 function fetchUserInfo(passValue) {
@@ -50,6 +55,13 @@ function setUserSelectYearAction(passValue) {
   }
 }
 
+function setUserSelectGraphicTypeAction(passValue) {
+  return {
+    type: USER_SELECT_GRAPHIC_TYPE,
+    payload: passValue
+  }
+}
+
 function resetUserUtitesDataAction() {
   return {
     type: USER_CLEAR_UTITESDATA,
@@ -57,12 +69,20 @@ function resetUserUtitesDataAction() {
   }
 }
 
-function fetchSelectTypeAction(state = initalState) {
+function fetchSelectTypeAction() {
   return {
     type: USER_FETCH_TYPE,
-    payload: axios.get(`/api/house/history/utitles/1/`)
+    payload: axios.get(`/api/house/history/utitles/overall/1/`)
   }
 }
+
+function fetchSelectType2Action() {
+  return {
+    type: USER_FETCH_TYPE2,
+    payload: axios.get(`/api/house/history/utitles/all/1/`)
+  }
+}
+
 // const setUserSelectTypeAction = (passValue) => ({
 //   type: USERSELECTTYPE,
 //   payload: passValue
@@ -102,6 +122,12 @@ function grapicReducer(state = initalState, action) {
         userSelectYear: action.payload
       }
 
+    case USER_SELECT_GRAPHIC_TYPE:
+      return {
+        ...state,
+        userSelectGrapicType: action.payload
+      }
+
     case `${ USER_FETCH_TYPE }_FULFILLED`:
       return {
         ...state,
@@ -113,13 +139,23 @@ function grapicReducer(state = initalState, action) {
       return {
         ...state,
         userUtitesData: action.payload,
-        userUtitesFilterData: action.payload
+        userUtitesFilterData: action.payload,
+        userUtitesAllData: action.payload,
+        userSelectType: '---',
+        userSelectYear: '---',
+        userSelectGrapicType: '---'
       }
 
     case USER_FITLER_UTITESDATA:
       return {
         ...state,
         userUtitesFilterData: state.userUtitesData.filter((value) => value.date.includes(action.payload))
+      }
+
+    case `${ USER_FETCH_TYPE2 }_FULFILLED`:
+      return {
+        ...state,
+        userUtitesAllData: action.payload.data
       }
 
     default: 
@@ -136,5 +172,7 @@ export {
   fetchSelectTypeAction,
   resetUserUtitesDataAction,
   setUserSelectYearAction,
-  filterUserUtitesDataAction
+  filterUserUtitesDataAction,
+  fetchSelectType2Action,
+  setUserSelectGraphicTypeAction
 }

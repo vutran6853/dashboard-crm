@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { resetUserUtitesDataAction } from '../../../duck/grapicReducer'
 import axios from 'axios'
 import './house.scss'
 
@@ -25,6 +27,11 @@ class House extends Component {
 
   componentDidMount() {
     this.handleCreateRangeOfYear()
+  }
+
+  componentWillUnmount() {
+    // console.log('component will unmount from House components', this)
+    this.props.resetUserUtitesDataAction()
   }
 
 
@@ -153,14 +160,15 @@ class House extends Component {
     ))
 
     return (
-      <div className="house-container">
-        <div className="house_item">
+      <div className="house_container">
+        <div className="house_form_container">
+
           <div className="house_inner_item">
             <div>
               <h3>Month</h3>
               <select onChange={ (e) => this.handleSetMonth(e) }>
                 <option value="---">---</option>
-                { displayMonth }
+                  { displayMonth }
               </select>
             </div>
 
@@ -174,23 +182,23 @@ class House extends Component {
 
           <h3>Utites Section</h3>
 
-          <div className="house_utites_container">
-            <div className="house_utites_item">
+          <div className="house_utites_form_container">
+            <div className="house_utites_form_item">
               <h3>Water</h3>
               <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
             </div>
 
-            <div className="house_utites_item">
+            <div className="house_utites_form_item">
               <h3>Gas</h3>
               <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
             </div>
 
-            <div className="house_utites_item">
+            <div className="house_utites_form_item">
               <h3>Internet</h3>
               <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
             </div>
 
-            <div className="house_utites_item">
+            <div className="house_utites_form_item">
               <h3>Electri</h3>
               <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric"/>
             </div>
@@ -229,4 +237,8 @@ class House extends Component {
   }
 }
 
-export default House
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps, { resetUserUtitesDataAction })(House)

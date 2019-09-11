@@ -30,7 +30,6 @@ function HousePie(props) {
     <div>
       HousePie
       <Pie data={ data } />
-
     </div>
   )
 }

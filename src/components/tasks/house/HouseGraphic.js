@@ -20,7 +20,7 @@ class HouseGraphic extends Component {
   render() {
     return (
       <div>
-        HouseGraphic Component
+        {/* HouseGraphic Component */}
         <HouseLineGraphic data={ this.state.allDate } />
         <HousePie data={ this.state.allDate } />
       </div>

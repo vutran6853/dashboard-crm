@@ -1,4 +1,4 @@
-const postHouseUtites = (req, res, next) => {
+const postHouseUtites = (req, res) => {
   let { houseID, date, utites } = req.body
   let dbInstance = req.app.get('db')
 
@@ -9,7 +9,7 @@ const postHouseUtites = (req, res, next) => {
   .catch((err) => console.log('Unable to post postHouseUtites()', err))
 }
 
-const postHousePayment = (req, res, next) => {
+const postHousePayment = (req, res) => {
   console.log(req.body)
   let { date, payment, houseID } = req.body
   let dbInstance = req.app.get('db')
@@ -21,7 +21,7 @@ const postHousePayment = (req, res, next) => {
   .catch((err) => console.log('Unable to post postHouseUtites()', err))
 }
 
-const getHouseHistory = (req, res, next) => {
+const getHouseHistory = (req, res) => {
   // console.log('hit getHouseHistory', req.params)
   let dbInstance = req.app.get('db')
   dbInstance.getHousehistory(req.params.id)
@@ -32,16 +32,30 @@ const getHouseHistory = (req, res, next) => {
 
 }
 
-const postRoomPayment = (req, res, next) => {
-  console.log('hit backend')
+const postRoomPayment = (req, res) => {
+  let dbInstance = req.app.get('db')
+  let { date, amount, room_ID } = req.body
+
+  dbInstance.postRoomPaymentDB(room_ID, date, amount)
+  .then((response) => res.status(200).send(response))
+  .catch((err) => console.log('Unable to post postRoomPayment()', err))
 }
 
-const getHouseUtitles = (req, res, next) => {
+const getHouseUtitlesOverall = (req, res) => {
   let dbInstance = req.app.get('db')
 
-  dbInstance.getHousehistoryUtilites(req.params.id)
+  dbInstance.getHousehistoryUtilitesOverall(req.params.id)
   .then((response) => res.status(200).send(response))
-  .catch((err) => console.log('Unable to fetch getHouseUtitles()', err))
+  .catch((err) => console.log('Unable to fetch getHouseUtitlesOverall()', err))
+}
+
+const getHouseUtitlesAll = (req, res) => {
+  // console.log('enter mmememme')
+  let dbInstance = req.app.get('db')
+  dbInstance.getHousehistoryUtilitesAll(req.params.id)
+  .then((response) => res.status(200).send(response))
+  .catch((err) => console.log('Unable to fetch getHouseUtitlesAll()', err))
+
 }
 
 module.exports = {
@@ -49,5 +63,6 @@ module.exports = {
   postHousePayment,
   getHouseHistory,
   postRoomPayment,
-  getHouseUtitles
+  getHouseUtitlesOverall,
+  getHouseUtitlesAll
 }

@@ -23,7 +23,7 @@ function HouseLineGraphic(props) {
     labels: displayPaymentDate,
     datasets: [
       {
-        label: 'Hello world',
+        label: 'House Payment Overall',
         backgroundColor: 'rgba(255,99,132,0.2)',
         borderColor: 'rgba(255,99,132,1)',
         borderWidth: 1,
@@ -37,7 +37,7 @@ function HouseLineGraphic(props) {
   return (
     <div>
       HouseLineGraphic
-      <Line data={ data } />
+      {/* <Line data={ data } /> */}
       <Bar data={ data } />
       {/* <Pie data={ data } /> */}
       {/* <Doughnut data={ data } /> */}

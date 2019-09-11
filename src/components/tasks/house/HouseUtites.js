@@ -5,9 +5,13 @@ import {
   fetchSelectTypeAction, 
   resetUserUtitesDataAction, 
   setUserSelectYearAction,
-  filterUserUtitesDataAction } from '../../../duck/grapicReducer'
+  filterUserUtitesDataAction,
+  fetchSelectType2Action,
+  setUserSelectGraphicTypeAction } from '../../../duck/grapicReducer'
 import handleCreateRangeOfYear from '.././../../helper/rangeDate'
 import HouseUtitlesGrapic from './HouseUtitlesGrapic'
+import HouseUtitlesAllGrapic from './HouseUtitlesAllGrapic'
+import './house.scss'
 
 function HouseUtites(props) {
   // console.log(props.grapic)
@@ -17,7 +21,7 @@ function HouseUtites(props) {
     <option value={ value } key={ value }>{ value }</option>
   ))
 
-  const displayMonth = props.grapic.monthName.map((value) => (
+  const displayGrapicType = props.grapic.grapicType.map((value) => (
     <option key={ value } >{ value }</option>
   ))
 
@@ -43,6 +47,7 @@ function HouseUtites(props) {
     // console.log(props.grapic)
     if (props.grapic.userSelectType === 'overall' && props.grapic.userSelectYear === '---') {
       props.fetchSelectTypeAction()
+      props.fetchSelectType2Action()
     }
 
     if (props.grapic.userSelectType === '---') {
@@ -56,7 +61,7 @@ function HouseUtites(props) {
       console.log('false')
     }
 
-    
+
     // console.log('e.target.value', passValue)
     // if (passValue !== '---') {
     //   console.log('there is something')
@@ -66,44 +71,55 @@ function HouseUtites(props) {
     // }
   }
 
+  const handleSetSelectGrapicType = (e) => {
+    // console.log('e', e.target.value)
+    props.setUserSelectGraphicTypeAction(e.target.value)
+  }
+
   const shouldDisplayGripicType = props.grapic.userUtitesFilterData.length !== 0 ? <HouseUtitlesGrapic /> : 'false'
+  const shouldDisplayGripicType2 = props.grapic.userUtitesAllData.length !== 0 ? <HouseUtitlesAllGrapic /> : 'false2'
 
   // const displayGripic =
 
   return (
-    <React.Fragment>
-      <div>
-        House Utitles
+      <div className="house_utites__overall_form_container">
+       <div>
         <select onChange={ handleSetSelectTypeName }>
-          { displayTypeName }
-        </select>
+            { displayTypeName }
+          </select>
 
-        <select>
-          { displayMonth }
-        </select>
+          <select onChange={ handleSetSelectGrapicType }>
+            { displayGrapicType }
+          </select>
 
-        <select onChange={ handleSetSelectYear } >
-          {/* <option> */}
-            { displayYear }
-          {/* </option> */}
-        </select>
-      <button onClick={ handleFetchUserRequestData } >Filter</button>
+          <select onChange={ handleSetSelectYear } >
+            {/* <option> */}
+              { displayYear }
+            {/* </option> */}
+          </select>
+        <button onClick={ handleFetchUserRequestData } >Filter</button>
+      </div>
 
-      <div>
+      <div className="house_utites_graphic_overall_container">
         { shouldDisplayGripicType }
       </div>
 
-
-      </div>
-    </React.Fragment>
+      {/* <div className="house_utites_graphic_all_container"> */}
+        { shouldDisplayGripicType2 }
+      {/* </div> */}
+    </div>
   )
 }
 
-const mapPropsToState = (state) => state
+const mapStateToProps = (state) => state
 
-export default connect(mapPropsToState, 
+export default connect(mapStateToProps, 
   { setUserSelectTypeAction, 
     fetchSelectTypeAction, 
     resetUserUtitesDataAction, 
     setUserSelectYearAction,
-    filterUserUtitesDataAction })(HouseUtites)
+    filterUserUtitesDataAction,
+    fetchSelectType2Action,
+    setUserSelectGraphicTypeAction
+  })
+(HouseUtites)

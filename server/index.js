@@ -5,11 +5,17 @@ const cors = require('cors')
 const app = express()
 const massive = require('massive')
 
-const { register, login, updateEmail, updatePassword } = require('./controller/auth')
-const { contacts } = require('./controller/contacts')
-const { postDailySpend } = require('./controller/spend')
-const { userHistoryInfo } = require('./controller/grapic')
-const { postHouseUtites, postHousePayment, getHouseHistory, postRoomPayment, getHouseUtitles } = require('./controller/house')
+const { register, login, updateEmail, updatePassword } = require('./controller/authController')
+const { contacts } = require('./controller/contactsController')
+const { postDailySpend } = require('./controller/spendController')
+const { userHistoryInfo } = require('./controller/grapicController')
+const { 
+  postHouseUtites, 
+  postHousePayment, 
+  getHouseHistory, 
+  postRoomPayment, 
+  getHouseUtitlesOverall,
+  getHouseUtitlesAll } = require('./controller/houseController')
 
 app.use(cors())
 app.use(express.json())
@@ -28,7 +34,8 @@ app.post('/api/login', login)
 app.get('/api/contacts', contacts)
 app.get('/api/graphic/:id', userHistoryInfo)
 app.get('/api/house/history/:id', getHouseHistory)
-app.get('/api/house/history/utitles/:id', getHouseUtitles)
+app.get('/api/house/history/utitles/overall/:id', getHouseUtitlesOverall)
+app.get('/api/house/history/utitles/all/:id', getHouseUtitlesAll)
 
 app.put('/api/update/email', updateEmail)
 app.put('/api/update/password', updatePassword)
