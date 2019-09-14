@@ -6,24 +6,28 @@ import axios from 'axios'
 import './house.scss'
 
 class House extends Component {
-  state = {
-    utites: {
-      water: '',
-      gas: '',
-      internet: '',
-      electric: ''
-    },
-    mortgage_insurance: '',
-    hoa_fee: '',
-    property_taxes: '',
-    range_date: [],
-    selected_date: {
-      year: '',
-      month: ''
-    },
-    payment: '',
-    monthText: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  constructor(props) {
+    super(props)
+    this.state = {
+      utites: {
+        water: '',
+        gas: '',
+        internet: '',
+        electric: ''
+      },
+      mortgage_insurance: '',
+      hoa_fee: '',
+      property_taxes: '',
+      range_date: [],
+      selected_date: {
+        year: '',
+        month: ''
+      },
+      payment: '',
+      monthText: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    }
   }
+  
 
   componentDidMount() {
     this.handleCreateRangeOfYear()
@@ -173,49 +177,43 @@ class House extends Component {
             </div>
 
             <div>
-              <h3>year</h3>
+              <h3>Year</h3>
               <select onChange={ (e) => this.handleSetYear(e) }>
                 { displayYear }
               </select>
             </div>
           </div>
 
-          <h3>Utites Section</h3>
+          {/* <h3>Utites Section</h3> */}
 
           <div className="house_utites_form_container">
             <div className="house_utites_form_item">
-              <h3>Water</h3>
-              <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water"/>
+              {/* <h3>Water</h3> */}
+              <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water amount..."/>
             </div>
-
             <div className="house_utites_form_item">
-              <h3>Gas</h3>
-              <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas"/>
+              {/* <h3>Gas</h3> */}
+              <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas amount..."/>
             </div>
-
             <div className="house_utites_form_item">
-              <h3>Internet</h3>
-              <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet"/>
+              {/* <h3>Internet</h3> */}
+              <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet amount..."/>
             </div>
-
             <div className="house_utites_form_item">
-              <h3>Electri</h3>
-              <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric"/>
+              {/* <h3>Electri</h3> */}
+              <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric amount..."/>
             </div>
-
             <button onClick={ this.handleSubmitUtites } >Submit</button>
           </div>
 
+          <div className="house_payment_container">
+            <h3>house payment</h3>
+            <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/>
+            <button onClick={ this.handleSubmitHousePayment } >Submit</button>
+          </div>
 
-
-        <div className="house_payment_container">
-          <h3>house payment</h3>
-          <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/>
-          <button onClick={ this.handleSubmitHousePayment } >Submit</button>
-        </div>
-
-        <Link to="/house/graphic">View Home paymentGraphic</Link>
-        <Link to="/house/graphic/utites">View Home Utites Graphic</Link>
+          <Link to="/house/graphic">View Home paymentGraphic</Link>
+          <Link to="/house/graphic/utites">View Home Utites Graphic</Link>
         </div>
 
 

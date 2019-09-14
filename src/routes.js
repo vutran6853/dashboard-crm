@@ -5,7 +5,7 @@ import Tasks from './components/tasks/Tasks'
 import Email from './components/email/Email'
 import Contacts from './components/contacts/Contacts'
 import Chat from './components/chat/Chat'
-import Cryptocurrency from './components/cryptocurrency/Cryptocurrency'
+import Weather from './components/weather/Weather'
 import Settings from './components/settings/Settings'
 // import Navbar from './components/navbar/Navbar'
 import Login from './components/auth/Login'
@@ -34,7 +34,7 @@ const route = (
     <Route path='/Tasks/room' component={ Room } />
     <Route path='/Contacts' component={ Contacts } />
     <Route path='/Chat' component={ Chat } />
-    <Route path='/cryptocurrency' component={ Cryptocurrency } />
+    <Route path='/Weather' component={ Weather } />
     <Route path='/Settings' component={ Settings } />
   </Switch>
 )

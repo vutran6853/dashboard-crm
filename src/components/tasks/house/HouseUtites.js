@@ -78,7 +78,9 @@ function HouseUtites(props) {
 
   const shouldDisplayGripicType = props.grapic.userUtitesFilterData.length !== 0 ? <HouseUtitlesGrapic /> : 'false'
   const shouldDisplayGripicType2 = props.grapic.userUtitesAllData.length !== 0 ? <HouseUtitlesAllGrapic /> : 'false2'
-
+  
+  //// CREATE TABLE VIEW FOR ALL UTITES DATE AS ANOTHER OPTION
+  const shouldDisplayGripicType3 = props.grapic.userSelectGrapicType === 'Table' ? 'true for table' : 'false for table'
   // const displayGripic =
 
   return (
@@ -107,6 +109,9 @@ function HouseUtites(props) {
       {/* <div className="house_utites_graphic_all_container"> */}
         { shouldDisplayGripicType2 }
       {/* </div> */}
+      <dvi>
+        { shouldDisplayGripicType3 }
+      </dvi>
     </div>
   )
 }

@@ -18,7 +18,7 @@ const initalState = {
   food: [],
   utitesLabel: ['---', 'overall', 'Water', 'Gas', 'Internet', 'Electri'],
   monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  grapicType: ['---', 'Bar', 'Line'],
+  grapicType: ['---', 'Bar', 'Line', 'Table'],
   userSelectType: '---',
   userSelectYear: '---',
   userSelectGrapicType: '---',
