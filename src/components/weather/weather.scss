@@ -1,4 +1,15 @@
+$borderRed: 2px solid red;
+
 .weather_img {
   height: 50px;
   width: 50px
+}
+
+.weather_container {
+  background-color: royalblue;
+  display: flex;
+}
+
+.weather_container > div {
+  border: $borderRed;
 }

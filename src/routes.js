@@ -20,7 +20,8 @@ import Room from './components/tasks/room/Room'
 
 const route = (
   <Switch>
-    <Route exact path="/dashboard" component={ Dashboard } />
+    <Route exact path="/" component={ Dashboard } />
+    <Route path='/Dashboard' component={ Dashboard } />
     <Route path='/Login' component={ Login } />
     <Route path='/Signup' component={ Signup } />
     <Route path='/Email' component={ Email } />

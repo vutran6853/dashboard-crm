@@ -88,7 +88,7 @@ function authReducer(state = initialState, action) {
         ...state,
         errorBool: true
       }
-    
+
     case RESET_STATE:
       return {
         ...state,

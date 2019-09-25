@@ -14,39 +14,86 @@ $borderRed: 2px solid red;
 .house_container {
   background-color: lightskyblue;
   width: 100vw;
-  @include display_flex_row;
+  height: 100vh;
+  @include display_flex_column();
   justify-content: center;
+  align-items: center;
+  color: lightslategrey;
 
   .house_form_container {
-  //   background-color: gray;
-    border: 2px solid red;
-    width: 30rem;
-    @include display_flex_column;
+    background-color: lightsalmon;
+    // border: 2px solid red;
+    width: 35rem;
+    height: 30rem;
+    // padding: 28px;
+    border-radius: 2%;
+    box-shadow: 5px 5px red;
+    
+    // margin-top: 40rem;
+    // margin: auto;
+    @include display_flex_column();
+    justify-content: space-between;
 
+    .house_form_item {
+      // border: 5px solid yellow;
+      @include display_flex_row();
+      justify-content: space-around;
+      // margin-bottom: 5rem;
+
+      select {
+        width: 100px;
+      }
+    }
+    
+    // @include display_flex_column;
+    // justify-content: space-evenly;
     input {
       height: 20px;
-      width: 25rem;
-    }
-
-    .house_inner_item {
-      // border: 2px solid black;
-      width: 30rem;
-      @include display_flex_row;
-      justify-content: space-between;
-      margin-bottom: 48px;
+      width: 15rem;
+      // border: 2px solid red;
+      border-radius: .10rem;
+      border-style: none;
     }
 
     .house_utites_form_container {
-      // border: 2px solid black;
-      @include display_flex_column;
-      height: 20rem;
+      @include display_flex_row();
+      height: 10rem;
+      // border: 5px solid black;
+      // align-self: space-around;
       justify-content: space-between;
-  //     .house_utites_form_item {
-  //       display: flex;
-  //       justify-content: space-between;
-  //       margin: 10px;
-  //     }
+      align-content: space-around;
+      div {
+        // display: flex;
+        // border: 2px solid black;
+        @include display_flex_column();
+        justify-content: space-between;
+        // margin: 10px;
+      }
+
+     
     }
+
+    .submit {
+      height: 2rem;
+      margin-bottom: 18px;
+      background-color: blueviolet;
+      border-style: none;
+      box-shadow: 2px 2px blueviolet;
+      width: 90%;
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        // background-color: red;
+        box-shadow: none;
+              box-shadow: 2px 2px blueviolet;
+
+
+      }
+    }
+
 
   //   .house_payment_container {
   //     // border: $borderRed;     

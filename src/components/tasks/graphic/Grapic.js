@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUserInfo, fetchFakeUserInfo } from '../../../duck/grapicReducer'
+import { fetchUserInfo, fetchFakeUserInfoAction } from '../../../duck/grapicReducer'
 import DisplayBook from './DisplayBook'
 import DisplayDrink from './DisplayDrink'
 import DisplayFood from './DisplayFood'
@@ -15,11 +15,10 @@ class Grapic extends Component {
       foodData: [],
       allData: [],
       nameLabel: ['Gas', 'Drink', 'Book', 'Food'],
-      monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      // monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     }
 
   componentDidMount() {
-    // console.log('enter componentDidMount')
     // console.log("%c Unable to get user info at handleGetUserInfo()!", "color: red; font-size:1rem;")
 
     this.props.auth.authBool ? this.handleGetUserInfo() : this.handleGetFakeUserInfo()
@@ -31,14 +30,9 @@ class Grapic extends Component {
 
 
   handleGetUserInfo = async () => {
-    // console.log('enter');
-    // let gas = []
-    // let drink = []
-    // let book = []
-    // let food = []
     try {
       let response = await this.props.fetchUserInfo(this.props.auth.userID)
-      
+
       this.setState({ gasData: this.props.grapic.gas })
       this.setState({ drinkData: this.props.grapic.drink })
       this.setState({ bookData: this.props.grapic.book })
@@ -52,14 +46,14 @@ class Grapic extends Component {
   handleGetFakeUserInfo = async () => {
     console.log('enter handleGetFakeUserInfo')
     try {
-      let response = await this.props.fetchFakeUserInfo()
+      let response = await this.props.fetchFakeUserInfoAction()
       console.log('this.props', this.props.grapic)
       
       this.setState({ gasData: this.props.grapic.gas })
       this.setState({ drinkData: this.props.grapic.drink })
       this.setState({ bookData: this.props.grapic.book })
       this.setState({ foodData: this.props.grapic.food })
-      // this.setState({ allData: response.value.data })
+      this.setState({ allData: response.value.data })
     }
     catch {
       console.log("%c Unable to get user info at handleGetFakeUserInfo()!", "color: red; font-size:1rem;")
@@ -135,7 +129,7 @@ class Grapic extends Component {
 
     // const displayAuthMessage = this.props.authBool ? fetchUserDate(this.props.userID) : displayFakeData()
     
-    const displayTypeName = this.props.grapic.nameLabel.map((value, index) => (
+    const displayTypeName = this.props.grapic.utitesLabel.map((value, index) => (
       <option value={ value } key={ index }>{ value }</option>
     ))
 
@@ -176,4 +170,4 @@ const mapPropToState = (state) => {
   }
 }
 
-export default connect(mapPropToState, { fetchUserInfo, fetchFakeUserInfo })( Grapic)
+export default connect(mapPropToState, { fetchUserInfo, fetchFakeUserInfoAction })( Grapic)

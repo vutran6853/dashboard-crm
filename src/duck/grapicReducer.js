@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+const FETCH_FAKE_USER_DATA = 'FETCH_FAKE_USER_DATA'
 const FETCH = 'FETCH'
 const USER_SELECT_TYPE = 'USER_SELECT_TYPE'
 const USER_FETCH_TYPE = 'USER_FETCH_TYPE'
@@ -34,9 +35,9 @@ function fetchUserInfo(passValue) {
   }
 }
 
-function fetchFakeUserInfo() {
+function fetchFakeUserInfoAction() {
   return {
-    type: FETCH,
+    type: FETCH_FAKE_USER_DATA,
     payload: axios.get('/api/graphic/0')
   }
 }
@@ -158,6 +159,16 @@ function grapicReducer(state = initalState, action) {
         userUtitesAllData: action.payload.data
       }
 
+    case `${ FETCH_FAKE_USER_DATA }_FULFILLED`:
+        return {
+          ...state,
+          data1: action.payload.data,
+          gas: action.payload.data.filter((value) => value.item === 'Gas'),
+          drink: action.payload.data.filter((value) => value.item === 'Drink'),
+          book: action.payload.data.filter((value) => value.item === 'Book'),
+          drink: action.payload.data.filter((value) => value.item === 'Drink')
+        }
+  
     default: 
       return state
   }
@@ -167,7 +178,7 @@ export default grapicReducer
 
 export {
   fetchUserInfo,
-  fetchFakeUserInfo,
+  fetchFakeUserInfoAction,
   setUserSelectTypeAction,
   fetchSelectTypeAction,
   resetUserUtitesDataAction,

@@ -20,8 +20,8 @@ class House extends Component {
       property_taxes: '',
       range_date: [],
       selected_date: {
-        year: '',
-        month: ''
+        year: '---',
+        month: '---'
       },
       payment: '',
       monthText: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -50,7 +50,6 @@ class House extends Component {
   }
 
   handleSubmitUtites = () => {
-    // console.log('hit handleSubmitUtites')
     let { selected_date, utites } = this.state
     console.log('this', this.state)
     let newObj = {
@@ -59,26 +58,27 @@ class House extends Component {
       houseID: 1
     }
 
-    console.log('newObj', newObj);
-
-    axios.post('http://localhost:3020/api/house', newObj)
-    .then((response) => {
-      console.log('response', response)
-      if (response.data.length === 0) {
-        this.handleResetState()
-        // this.handleCreateRangeOfYear()
-      }
-    })
-    .catch(() => console.log('%c Unable post at handleSubmitUtites()', 'color: red; font-size: 1rem'))
-
+    console.log('newObj', { newObj })
     console.table(newObj)
+    this.handleResetState()
+    // this.handleCreateRangeOfYear()
+    // axios.post('http://localhost:3020/api/house', newObj)
+    // .then((response) => {
+    //   console.log('response', response)
+    //   if (response.data.length === 0) {
+    //     this.handleResetState()
+    //     // this.handleCreateRangeOfYear()
+    //   }
+    // })
+    // .catch((err) => console.log('%c Unable post at handleSubmitUtites()', 'color: red; font-size: 1rem', err))
+
   }
 
   handleCreateRangeOfYear = () => {
     let time = new Date()
     let year = time.getFullYear()
     let past = year - 1
-    let future = year + 100
+    let future = year + 10
     let newArray = []
 
     for (let i = past; future > i; i++) {
@@ -90,12 +90,12 @@ class House extends Component {
 
   handleSetMonth = (e) => {
     let { selected_date } = this.state
-    this.setState({ 
+    this.setState({
       selected_date: {
         ...selected_date,
         month: e.target.value
       }
-     })
+    })
   }
 
   handleSetYear = (e) => {
@@ -105,7 +105,7 @@ class House extends Component {
         ...selected_date,
         year: e.target.value
       }
-     })
+    })
   }
 
   handleResetState = () => {
@@ -116,7 +116,11 @@ class House extends Component {
         internet: '',
         electric: ''
       },
-      payment: ''
+      payment: '',
+      selected_date: {
+        year: '---',
+        month: '---'
+      }
     })
   }
 
@@ -156,22 +160,22 @@ class House extends Component {
     let { utites, range_date, monthText } = this.state
 
     let displayYear = range_date.map((value, index) => (
-      <option key={ index } value={ value }>{ value }</option>
+      <option key={ index } value={ value } >{ value }</option>
     ))
 
     let displayMonth = monthText.map((value, index) => (
-      <option key={ value } value={ index + 1 } >{ value }</option>
+      <option key={ value } value={ index + 1 }>{ value }</option>
     ))
 
     return (
       <div className="house_container">
         <div className="house_form_container">
 
-          <div className="house_inner_item">
+          <div className="house_form_item">
             <div>
               <h3>Month</h3>
-              <select onChange={ (e) => this.handleSetMonth(e) }>
-                <option value="---">---</option>
+              <select onChange={ (e) => this.handleSetMonth(e) }  >
+                <option value="---" defaultValue>---</option>
                   { displayMonth }
               </select>
             </div>
@@ -187,36 +191,41 @@ class House extends Component {
           {/* <h3>Utites Section</h3> */}
 
           <div className="house_utites_form_container">
-            <div className="house_utites_form_item">
-              {/* <h3>Water</h3> */}
-              <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water amount..."/>
-            </div>
-            <div className="house_utites_form_item">
-              {/* <h3>Gas</h3> */}
-              <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas amount..."/>
-            </div>
-            <div className="house_utites_form_item">
-              {/* <h3>Internet</h3> */}
-              <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet amount..."/>
-            </div>
-            <div className="house_utites_form_item">
-              {/* <h3>Electri</h3> */}
-              <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric amount..."/>
-            </div>
-            <button onClick={ this.handleSubmitUtites } >Submit</button>
-          </div>
+            <div>
+              <span>
+                <p>Water</p>
+                <input name="water" type="number" value={ utites.water }  onChange={ this.handleSetValueToItem } placeholder="Enter water amount..."/> 
+              </span>
+              <span>
+                <p>Gas</p>
+                <input name="gas" type="number" value={ utites.gas } onChange={ this.handleSetValueToItem } placeholder="Enter gas amount..."/>
+              </span>
+             </div>
 
-          <div className="house_payment_container">
-            <h3>house payment</h3>
-            <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/>
-            <button onClick={ this.handleSubmitHousePayment } >Submit</button>
+            <div>
+              <span>
+                <p>Internet</p>
+                <input name="internet" type="number" value={ utites.internet } onChange={ this.handleSetValueToItem } placeholder="Enter internet amount..."/>
+              </span>
+              <span>
+                <p>Electri</p>
+                <input name="electric" type="number" value={ utites.electric } onChange={ this.handleSetValueToItem } placeholder="Enter electric amount..."/>
+              </span>
+             </div>
           </div>
+          <button className="submit" onClick={ this.handleSubmitUtites }>Submit</button>
+           
+          {/* <div className="house_payment_container"> */}
+            {/* <h3>house payment</h3> */}
+            {/* <input type="number" name="payment"  placeholder="Enter payment" value={ this.state.payment }  onChange={ this.handleSetPayment }/> */}
+            {/* <button onClick={ this.handleSubmitHousePayment } >Submit</button> */}
+          {/* </div> */}
 
-          <Link to="/house/graphic">View Home paymentGraphic</Link>
-          <Link to="/house/graphic/utites">View Home Utites Graphic</Link>
         </div>
 
 
+          {/* <Link to="/house/graphic">View Home paymentGraphic</Link> */}
+          <Link to="/house/graphic/utites">View Home Utites Graphic</Link>
 
 
         {/* <div>
