@@ -27,11 +27,15 @@ class Tasks extends Component {
         </button>
 
         <button onClick={ () => this.handleRouteTo('house') }>
-          house
+          House
         </button>
 
         <button onClick={ () => this.handleRouteTo('room') }>
-          room
+          Room
+        </button>
+
+        <button onClick={ () => this.handleRouteTo('todo') }>
+          Todo
         </button>
 
       </div>

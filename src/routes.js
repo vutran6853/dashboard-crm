@@ -17,6 +17,7 @@ import House from './components/tasks/house/House'
 import HouseGraphic from './components/tasks/house/HouseGraphic'
 import HouseUtites from './components/tasks/house/HouseUtites'
 import Room from './components/tasks/room/Room'
+import Todo from './components/todo/Todo'
 
 const route = (
   <Switch>
@@ -30,6 +31,7 @@ const route = (
     <Route path='/Tasks/how_much' component={ HowMuch } />
     <Route path='/Tasks/spending_what' component={ SpendingWhat } />
     <Route path='/Tasks/house' component={ House } />
+    <Route path='/Tasks/todo' component={ Todo } />
     <Route exact path='/house/graphic' component={ HouseGraphic } />
     <Route path='/house/graphic/utites' component={ HouseUtites } />
     <Route path='/Tasks/room' component={ Room } />

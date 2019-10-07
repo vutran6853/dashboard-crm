@@ -35,8 +35,6 @@ CREATE TABLE house (
 	house_price_tag VARCHAR(255)
 )
 
-
-
 CREATE TABLE house_payment_history (
 	house_payment_date VARCHAR(255),
 	house_payment_payment VARCHAR(255),
