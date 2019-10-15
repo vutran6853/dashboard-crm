@@ -3,7 +3,6 @@ const contacts = (req, res) => {
 
   dbInstance.getAllContacts()
   .then((response) => {
-    // console.log('response', response)
     return res.status(200).send(response)
   })
   .catch((err) => {

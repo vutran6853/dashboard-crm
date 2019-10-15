@@ -4,7 +4,6 @@ const PORT = 3020
 const cors = require('cors')
 const app = express()
 const massive = require('massive')
-
 const { register, login, updateEmail, updatePassword } = require('./controller/authController')
 const { contacts } = require('./controller/contactsController')
 const { postDailySpend } = require('./controller/spendController')

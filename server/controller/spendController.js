@@ -1,5 +1,4 @@
 const postDailySpend = (req, res) => {
-  // console.log('enter postDailySpend', req.body)
   let dbInstance = req.app.get('db')
 
   dbInstance.postSpend(req.body.id, req.body.item, req.body.price, req.body.purchaseDate)

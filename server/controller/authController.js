@@ -3,11 +3,7 @@ const saltRounds = 10
 
 const register = async (req, res) => {
   let dbInstance = req.app.get('db')
-
   let hashpassword = await bcrypt.hash(req.body.passValue.password, saltRounds)
-  // .then((response) => response)
-  // .catch((err) => console.log('Unable to hash password at login()', err))
-
   let result = await dbInstance.registerAccount(req.body.passValue.username, hashpassword)
 
   if(result) {
@@ -19,7 +15,7 @@ const register = async (req, res) => {
 
 const login = (req, res) => {
   let dbInstance = req.app.get('db')
-  console.log('req', req.body)
+
 
   dbInstance.loginInAccount(req.body.passValue.username)
   .then((response) => {
@@ -43,7 +39,6 @@ const login = (req, res) => {
 
 const updateEmail = (req, res) => {
   let dbInstance = req.app.get('db')
-  // console.log('req', req.body)
 
   dbInstance.postUpdateEmail(req.body.id, req.body.newEmail)
   .then((response) => {

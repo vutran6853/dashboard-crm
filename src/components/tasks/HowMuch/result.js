@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 function Result(props) {
-  console.log(props)
+  // console.log(props)
   return (
     <div className="result-container">
       <h3>Price: ${ props.price }</h3>

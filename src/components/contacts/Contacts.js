@@ -36,7 +36,6 @@ function mapPropToState(state) {
   return state.crm
 }
 
-// Type Checking Props
 Contacts.propTypes = {
   contactsList: PropTypes.array.isRequired
 }

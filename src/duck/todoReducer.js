@@ -4,15 +4,14 @@ const ADD_NEW_TODO = 'ADD_NEW_TODO'
 
 const initialState = {
   todoList: [
-    {id: 0, task: 'clean room', complete: false},
-    {id: 1, task: 'buy shoe', complete: false},
-    {id: 2, task: 'pay bill', complete: false},
-    {id: 3, task: 'relex', complete: false}
+    {id: 0, task: 'clean room', complete: false, date: '2019-10-02' },
+    {id: 1, task: 'buy shoe', complete: false, date: '2019-10-01'},
+    {id: 2, task: 'pay bill', complete: false, date: '2019-10-05'},
+    {id: 3, task: 'relex', complete: false, date: '2019-10-10'}
   ]
 }
 
 function todoListAction() {
-  // console.log('enter action')
   return {
     type: TODO_LIST,
   }
@@ -27,7 +26,7 @@ function markTaskCompleteAction(passBool, passID) {
 }
 
 function addNewTodoItemAction(passObj) {
-  console.log({passObj})
+  // console.log({passObj})
   return {
     type: ADD_NEW_TODO,
     payload: passObj
@@ -35,12 +34,6 @@ function addNewTodoItemAction(passObj) {
 }
 
 function todoReducer(state = initialState, action) {
-  console.log('enter reducer', action.payload)
-  // state.todoList.push({
-  //   id: 10,
-  //   task: 'hello world',
-  //   complete: false
-  // })
   switch(action.type) {
     case TODO_LIST:
       return {

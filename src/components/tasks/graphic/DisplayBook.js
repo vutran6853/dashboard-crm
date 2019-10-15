@@ -1,5 +1,5 @@
 import React from 'react'
-import { Line, Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 
 function DisplayBook(props) {
   const displayPrice = props.bookData.map((value) => value.price)
@@ -28,8 +28,7 @@ function DisplayBook(props) {
 
   return (
     <div>
-      <Line data={ data } />
-      {/* <Bar data={ data } /> */}
+      <Line data={data} />
     </div>
   )
 }

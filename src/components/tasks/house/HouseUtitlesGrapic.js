@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Line, Bar } from 'react-chartjs-2'
 
 function HouseUtitlesGrapic(props) {
-  // console.log('props', props.grapic.userUtitesFilterData)
   const utitesTotalArray = props.grapic.userUtitesFilterData.map((value) => value.total)
   const utitesPaymentDate = props.grapic.userUtitesFilterData.map((value) => value.date)
 

@@ -107,8 +107,7 @@ function grapicReducer(state = initalState, action) {
         data1: action.payload.data,
         gas: action.payload.data.filter((value) => value.item === 'Gas'),
         drink: action.payload.data.filter((value) => value.item === 'Drink'),
-        book: action.payload.data.filter((value) => value.item === 'Book'),
-        drink: action.payload.data.filter((value) => value.item === 'Drink')
+        book: action.payload.data.filter((value) => value.item === 'Book')
       }
 
     case USER_SELECT_TYPE:
@@ -165,8 +164,7 @@ function grapicReducer(state = initalState, action) {
           data1: action.payload.data,
           gas: action.payload.data.filter((value) => value.item === 'Gas'),
           drink: action.payload.data.filter((value) => value.item === 'Drink'),
-          book: action.payload.data.filter((value) => value.item === 'Book'),
-          drink: action.payload.data.filter((value) => value.item === 'Drink')
+          book: action.payload.data.filter((value) => value.item === 'Book')
         }
   
     default: 

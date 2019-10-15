@@ -10,7 +10,6 @@ const postHouseUtites = (req, res) => {
 }
 
 const postHousePayment = (req, res) => {
-  console.log(req.body)
   let { date, payment, houseID } = req.body
   let dbInstance = req.app.get('db')
 
@@ -22,8 +21,8 @@ const postHousePayment = (req, res) => {
 }
 
 const getHouseHistory = (req, res) => {
-  // console.log('hit getHouseHistory', req.params)
   let dbInstance = req.app.get('db')
+
   dbInstance.getHousehistory(req.params.id)
   .then((response) => {
     res.status(200).send(response)
@@ -50,12 +49,11 @@ const getHouseUtitlesOverall = (req, res) => {
 }
 
 const getHouseUtitlesAll = (req, res) => {
-  // console.log('enter mmememme')
   let dbInstance = req.app.get('db')
+
   dbInstance.getHousehistoryUtilitesAll(req.params.id)
   .then((response) => res.status(200).send(response))
   .catch((err) => console.log('Unable to fetch getHouseUtitlesAll()', err))
-
 }
 
 module.exports = {

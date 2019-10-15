@@ -1,5 +1,5 @@
 import React from 'react'
-import { Line, Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import './displayGrapic.css'
 
 function DisplayGas(props) {
@@ -30,7 +30,6 @@ function DisplayGas(props) {
   return (
     <div className="">
       <Line data={ data } />
-      {/* <Bar data={ data } /> */}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Pie, Line, Bar } from 'react-chartjs-2'
+import { Line, Bar } from 'react-chartjs-2'
 
 function HouseUtitlesAllGrapic(props) {
   // console.log('props', props.grapic.userUtitesAllData)
@@ -70,8 +70,6 @@ function HouseUtitlesAllGrapic(props) {
     ]
   }
 
-  // console.log(utitesTotalArray)
-  // console.log(utitesPaymentDate)
   return (
     <Fragment>
       { props.grapic.userSelectGrapicType === '---' ||
@@ -124,29 +122,6 @@ function HouseUtitlesAllGrapic(props) {
   
         </div>
         ) }
-      {/* <div className="house_utites_graphic_all_container">
-        <div className="house_utites_graphic_all_item">
-          <Line data={ gasData }
-                width={ 50 }
-                height={ 35 }
-          />
-        </div>
-        
-        <div className="house_utites_graphic_all_item">
-          <Line data={ waterData }
-                width={ 50 }
-                height={ 35 }
-          />
-        </div>
-
-        <div className="house_utites_graphic_all_item">
-          <Line data={ internetData }
-                width={ 50 }
-                height={ 35 }
-          />
-        </div>
-
-      </div> */}
     </Fragment>
   )
 }
