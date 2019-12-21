@@ -16,19 +16,15 @@ class Contacts extends Component {
     let displayContacts = this.props.contactsList.map((value, index) => {
       // console.log(`value[${index}] =`, value)
       return (
-        <div className="contacts-item" key={ value.users_id }>
-          <p>{ value.users_id }</p>
-          <p>{ value.users_username }</p>
-          <p>{ value.users_email ? value.users_email : 'no email exist' }</p>
+        <div className="contacts-item" key={value.users_id}>
+          <p>{value.users_id}</p>
+          <p>{value.users_username}</p>
+          <p>{value.users_email ? value.users_email : 'no email exist'}</p>
         </div>
       )
     })
 
-    return (
-      <div className="contacts-container">
-        { displayContacts }
-      </div>
-    )
+    return <div className="contacts-container">{displayContacts}</div>
   }
 }
 

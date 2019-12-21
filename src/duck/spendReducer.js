@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const PRICE = 'PRICE'
 const ITEM = 'ITEM'
@@ -48,41 +48,41 @@ function postToDBAction(passValue) {
 }
 
 function spendReducer(state = initialState, action) {
-  switch(action.type) {
-    case PRICE: 
+  switch (action.type) {
+    case PRICE:
       return {
         ...state,
         price: action.payload
       }
-    case ITEM: 
+    case ITEM:
       return {
         ...state,
         item: action.payload
       }
-    case PURCHASE_DATE: 
+    case PURCHASE_DATE:
       return {
         ...state,
-        purchaseDate : action.payload
+        purchaseDate: action.payload
       }
     case RESTART:
       return {
         price: 0,
         item: '',
         purchaseDate: '',
-        selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']      
+        selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc']
       }
     default:
       return state
   }
-} 
-
+}
 
 export default spendReducer
 
-export {
-  setPurchaseDateAction,
-  setSpendPriceAction,
-  setSpendItemAction,
-  setResetStateAction,
-  postToDBAction
+export { 
+  setPurchaseDateAction, 
+  setSpendPriceAction, 
+  setSpendItemAction, 
+  setResetStateAction, 
+  postToDBAction 
 }
+

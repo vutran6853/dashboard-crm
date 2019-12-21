@@ -1,47 +1,48 @@
+// @flow
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes  from 'prop-types'
+import PropTypes from 'prop-types'
 import Result from './Result'
-import { 
-  setPriceAction, 
-  setItemAction, 
-  setSaleAction, 
-  setTotalAction, 
-  setSaleDiscountAction, 
-  restartStateAction 
+import {
+  setPriceAction,
+  setItemAction,
+  setSaleAction,
+  setTotalAction,
+  setSaleDiscountAction,
+  restartStateAction
 } from '../../../duck/taskReducer'
 import './salePrice.scss'
 
 function SalePrice(props) {
-
-  const setValueToState = (e) => {
+  // console.log('props', props)
+  const handleValueToState = (e) => {
     // let obj = {
     //   [e.target.name]: parseInt(e.target.value)
     // }
 
     if (e.target.name === 'price') {
-      props.setPriceAction(parseInt(e.target.value))
+      props.setPriceAction(e.target.value)
     }
 
     if (e.target.name === 'saleDiscount') {
-      props.setSaleAction(parseInt(e.target.value))
+      props.setSaleAction(e.target.value)
     }
 
     return null
   }
 
-  const setTotalToReducer = () => {
+  const handleSendTotalToReducer = () => {
     let price = props.price
-    let discount =  (props.sale / 100)
-    let saleDiscount = (discount * price)
+    let discount = props.sale / 100
+    let saleDiscount = discount * price
     let total = price - saleDiscount
-    props.setSaleDiscountAction(saleDiscount)
+    props.setSaleDiscountAction(saleDiscount.toString())
     props.setTotalAction(total)
   }
 
-  const setRestartState = () => {
+  const handleRestartState = () => {
     if (props.total !== '') {
-        props.restartStateAction()
+      props.restartStateAction()
     }
 
     return null
@@ -56,30 +57,32 @@ function SalePrice(props) {
       <div className="sale-price-form">
         <div className="sale-price-item">
           <p>Price</p>
-          <input  type="number"
-                  placeholder="Enter Price"
-                  name="price"
-                  value={ props.price }
-                  onClick={ setRestartState }
-                  onChange={ setValueToState }>
-          </input>
+          <input
+            type="number"
+            placeholder="Enter Price"
+            name="price"
+            value={props.price}
+            onClick={handleRestartState}
+            onChange={handleValueToState}></input>
         </div>
 
         <div className="sale-price-item">
           <p>Sale</p>
-          <input  type="number"
-                  placeholder="Enter discount"
-                  name="saleDiscount"
-                  value={ props.sale }
-                  onClick={ setRestartState }
-                  onChange={ setValueToState }>
-          </input>
+          <input
+            type="number"
+            placeholder="Enter discount"
+            name="saleDiscount"
+            value={props.sale}
+            onClick={handleRestartState}
+            onChange={handleValueToState}></input>
         </div>
 
-        <button className="submit-button" onClick={ setTotalToReducer }>Sumit</button>
+        <button className="submit-button" onClick={handleSendTotalToReducer}>
+          Sumit
+        </button>
       </div>
 
-      { isTotalShowResult }
+      {isTotalShowResult}
     </div>
   )
 }
@@ -89,9 +92,16 @@ const mapPropToState = (state) => state.task
 
 // Props Type
 SalePrice.propTypes = {
-  price: PropTypes.number,
-  discount: PropTypes.number,
-  saleDiscount: PropTypes.number
+  price: PropTypes.string.isRequired,
+  // discount: PropTypes.string.isRequired,
+  saleDiscount: PropTypes.string.isRequired
 }
 
-export default connect(mapPropToState, { setPriceAction, setItemAction, setSaleAction, setTotalAction, setSaleDiscountAction, restartStateAction }) (SalePrice)
+export default connect(mapPropToState, {
+  setPriceAction,
+  setItemAction,
+  setSaleAction,
+  setTotalAction,
+  setSaleDiscountAction,
+  restartStateAction
+})(SalePrice)

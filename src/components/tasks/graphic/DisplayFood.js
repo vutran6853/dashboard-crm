@@ -6,12 +6,12 @@ function DisplayFood(props) {
 
   const displayPurchaseDate = props.foodData.map((value) => {
     let date = new Date(value.purchase_date)
-    let month = (date.getUTCMonth(value.purchase_date) + 1)
+    let month = date.getUTCMonth(value.purchase_date) + 1
     let day = date.getUTCDate(value.purchase_date)
     return [`${month}/${day}`]
   })
 
-  const data =  {
+  const data = {
     labels: displayPurchaseDate,
     datasets: [
       {
@@ -28,7 +28,7 @@ function DisplayFood(props) {
 
   return (
     <div>
-      <Line data={ data } />
+      <Line data={data} />
       {/* <Bar data={ data } /> */}
     </div>
   )

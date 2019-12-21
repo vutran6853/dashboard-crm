@@ -7,29 +7,20 @@ function HousePie(props) {
   const totalPayment = paymentArray.reduce((acc, curr) => acc + curr, 0)
 
   const data = {
-    labels: [
-      'Payment',
-      'House'
-    ],
-    datasets: [{
-      data: [totalPayment, parseFloat('383100').toFixed(2)],
-      backgroundColor: [
-      '#FF6384',
-      '#36A2EB',
-      '#FFCE56'
-      ],
-      hoverBackgroundColor: [
-      '#FF6384',
-      '#36A2EB',
-      '#FFCE56'
-      ]
-    }]
+    labels: ['Payment', 'House'],
+    datasets: [
+      {
+        data: [totalPayment, parseFloat('383100').toFixed(2)],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      }
+    ]
   }
 
   return (
     <div>
       HousePie
-      <Pie data={ data } />
+      <Pie data={data} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const LOGIN_IN = 'LOGIN_IN'
 const SIGN_UP = 'SIGN_UP'
@@ -52,9 +52,8 @@ function updatePasswordAction(passValue) {
   }
 }
 
-
 function authReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case `${SIGN_UP}_FULFILLED`:
       return {
         ...state,
@@ -93,21 +92,13 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         errorBool: null,
-        successBool: null,
+        successBool: null
       }
     default:
       return state
   }
 }
 
-
-
 export default authReducer
 
-export {
-  restartStateAction,
-  signUpAction,
-  loginInAction,
-  updateEmailAction,
-  updatePasswordAction
-}
+export { restartStateAction, signUpAction, loginInAction, updateEmailAction, updatePasswordAction }

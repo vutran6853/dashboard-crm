@@ -11,18 +11,18 @@ function HouseUtitlesAllGrapic(props) {
   props.grapic.userUtitesAllData.filter((value, index) => {
     if (value.utilites_date.includes(props.grapic.userSelectYear)) {
       // console.log(`value[${index}] =`, value)
-       gasArray[0].push(value.utilites_gas)
-       gasArray[1].push(value.utilites_date)
-       waterArray[0].push(value.utilites_water)
-       waterArray[1].push(value.utilites_date)
-       internetArray[0].push(value.utilites_internet)
-       internetArray[1].push(value.utilites_date)
+      gasArray[0].push(value.utilites_gas)
+      gasArray[1].push(value.utilites_date)
+      waterArray[0].push(value.utilites_water)
+      waterArray[1].push(value.utilites_date)
+      internetArray[0].push(value.utilites_internet)
+      internetArray[1].push(value.utilites_date)
     }
   })
 
   console.log('gasArray', gasArray)
 
-  const gasData =  {
+  const gasData = {
     labels: gasArray[1],
     datasets: [
       {
@@ -38,7 +38,7 @@ function HouseUtitlesAllGrapic(props) {
     ]
   }
 
-  const waterData =  {
+  const waterData = {
     labels: waterArray[1],
     datasets: [
       {
@@ -54,7 +54,7 @@ function HouseUtitlesAllGrapic(props) {
     ]
   }
 
-  const internetData =  {
+  const internetData = {
     labels: internetArray[1],
     datasets: [
       {
@@ -72,60 +72,39 @@ function HouseUtitlesAllGrapic(props) {
 
   return (
     <Fragment>
-      { props.grapic.userSelectGrapicType === '---' ||
-        props.grapic.userSelectGrapicType === 'Line' ? (
-          <div className="house_utites_graphic_all_container">
+      {props.grapic.userSelectGrapicType === '---' || props.grapic.userSelectGrapicType === 'Line' ? (
+        <div className="house_utites_graphic_all_container">
           <div className="house_utites_graphic_all_item">
-            <Line data={ gasData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Line data={gasData} width={50} height={35} />
           </div>
-          
+
           <div className="house_utites_graphic_all_item">
-            <Line data={ waterData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Line data={waterData} width={50} height={35} />
           </div>
-  
+
           <div className="house_utites_graphic_all_item">
-            <Line data={ internetData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Line data={internetData} width={50} height={35} />
           </div>
-  
         </div>
-        ) : (
-          <div className="house_utites_graphic_all_container">
+      ) : (
+        <div className="house_utites_graphic_all_container">
           <div className="house_utites_graphic_all_item">
-            <Bar data={ gasData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Bar data={gasData} width={50} height={35} />
           </div>
-          
+
           <div className="house_utites_graphic_all_item">
-            <Bar data={ waterData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Bar data={waterData} width={50} height={35} />
           </div>
-  
+
           <div className="house_utites_graphic_all_item">
-            <Bar data={ internetData }
-                  width={ 50 }
-                  height={ 35 }
-            />
+            <Bar data={internetData} width={50} height={35} />
           </div>
-  
         </div>
-        ) }
+      )}
     </Fragment>
   )
 }
 
 const mapStateToProps = (state) => state
 
-export default connect(mapStateToProps, {  })(HouseUtitlesAllGrapic)
+export default connect(mapStateToProps, {})(HouseUtitlesAllGrapic)

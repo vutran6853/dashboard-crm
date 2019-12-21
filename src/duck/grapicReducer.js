@@ -8,7 +8,7 @@ const USER_CLEAR_UTITESDATA = 'USER_CLEAR_UTITESDATA'
 const USER_SELECT_YEAR = 'USER_SELECT_YEAR'
 const USER_FITLER_UTITESDATA = 'USER_FITLER_UTITESDATA'
 const USER_FETCH_TYPE2 = 'USER_FETCH_TYPE2'
-const USER_SELECT_GRAPHIC_TYPE ='USER_SELECT_GRAPHIC_TYPE'
+const USER_SELECT_GRAPHIC_TYPE = 'USER_SELECT_GRAPHIC_TYPE'
 
 const initalState = {
   data1: [],
@@ -18,13 +18,27 @@ const initalState = {
   book: [],
   food: [],
   utitesLabel: ['---', 'overall', 'Water', 'Gas', 'Internet', 'Electri'],
-  monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  monthName: [
+    '---',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ],
   grapicType: ['---', 'Bar', 'Line', 'Table'],
   userSelectType: '---',
   userSelectYear: '---',
   userSelectGrapicType: '---',
   userUtitesData: [],
-  userUtitesFilterData:[],
+  userUtitesFilterData: [],
   userUtitesAllData: []
 }
 
@@ -95,13 +109,11 @@ function filterUserUtitesDataAction(passValue) {
     type: USER_FITLER_UTITESDATA,
     payload: passValue
   }
-
 }
 
-
 function grapicReducer(state = initalState, action) {
-  switch(action.type) {
-    case `${ FETCH }_FULFILLED`:
+  switch (action.type) {
+    case `${FETCH}_FULFILLED`:
       return {
         ...state,
         data1: action.payload.data,
@@ -128,7 +140,7 @@ function grapicReducer(state = initalState, action) {
         userSelectGrapicType: action.payload
       }
 
-    case `${ USER_FETCH_TYPE }_FULFILLED`:
+    case `${USER_FETCH_TYPE}_FULFILLED`:
       return {
         ...state,
         userUtitesData: action.payload.data,
@@ -152,22 +164,22 @@ function grapicReducer(state = initalState, action) {
         userUtitesFilterData: state.userUtitesData.filter((value) => value.date.includes(action.payload))
       }
 
-    case `${ USER_FETCH_TYPE2 }_FULFILLED`:
+    case `${USER_FETCH_TYPE2}_FULFILLED`:
       return {
         ...state,
         userUtitesAllData: action.payload.data
       }
 
-    case `${ FETCH_FAKE_USER_DATA }_FULFILLED`:
-        return {
-          ...state,
-          data1: action.payload.data,
-          gas: action.payload.data.filter((value) => value.item === 'Gas'),
-          drink: action.payload.data.filter((value) => value.item === 'Drink'),
-          book: action.payload.data.filter((value) => value.item === 'Book')
-        }
-  
-    default: 
+    case `${FETCH_FAKE_USER_DATA}_FULFILLED`:
+      return {
+        ...state,
+        data1: action.payload.data,
+        gas: action.payload.data.filter((value) => value.item === 'Gas'),
+        drink: action.payload.data.filter((value) => value.item === 'Drink'),
+        book: action.payload.data.filter((value) => value.item === 'Book')
+      }
+
+    default:
       return state
   }
 }

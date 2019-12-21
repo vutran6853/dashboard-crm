@@ -3,15 +3,15 @@ import { Line } from 'react-chartjs-2'
 
 function DisplayDrink(props) {
   const displayPrice = props.drinkData.map((value) => value.price)
-  
+
   const displayPurchaseDate = props.drinkData.map((value) => {
     let date = new Date(value.purchase_date)
-    let month = (date.getUTCMonth(value.purchase_date) + 1)
+    let month = date.getUTCMonth(value.purchase_date) + 1
     let day = date.getUTCDate(value.purchase_date)
     return [`${month}/${day}`]
   })
 
-  const data =  {
+  const data = {
     labels: displayPurchaseDate,
     datasets: [
       {

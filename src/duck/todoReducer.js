@@ -1,19 +1,19 @@
 const TODO_LIST = 'TODO_LIST'
 const MARK_TASK_COMPLETE = 'MARK_TASK_COMPLETE'
-const ADD_NEW_TODO = 'ADD_NEW_TODO' 
+const ADD_NEW_TODO = 'ADD_NEW_TODO'
 
 const initialState = {
   todoList: [
-    {id: 0, task: 'clean room', complete: false, date: '2019-10-02' },
-    {id: 1, task: 'buy shoe', complete: false, date: '2019-10-01'},
-    {id: 2, task: 'pay bill', complete: false, date: '2019-10-05'},
-    {id: 3, task: 'relex', complete: false, date: '2019-10-10'}
+    { id: 0, task: 'clean room', complete: false, date: '2019-10-02' },
+    { id: 1, task: 'buy shoe', complete: false, date: '2019-10-01' },
+    { id: 2, task: 'pay bill', complete: false, date: '2019-10-05' },
+    { id: 3, task: 'relex', complete: false, date: '2019-10-10' }
   ]
 }
 
 function todoListAction() {
   return {
-    type: TODO_LIST,
+    type: TODO_LIST
   }
 }
 
@@ -34,7 +34,7 @@ function addNewTodoItemAction(passObj) {
 }
 
 function todoReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case TODO_LIST:
       return {
         ...state
@@ -43,22 +43,25 @@ function todoReducer(state = initialState, action) {
       return {
         ...state,
         todoList: state.todoList.map((value, index) => {
-         if (value.id === action.payload.passID) {
-           value.complete = action.payload.passBool
-           return value
-         } else {
-           return value
-         }
+          if (value.id === action.payload.passID) {
+            value.complete = action.payload.passBool
+            return value
+          } else {
+            return value
+          }
         })
       }
     case ADD_NEW_TODO:
       return {
         ...state,
-        todoList: [...state.todoList, {
-          id: action.payload.id,
-          task: action.payload.task,
-          complete: false
-        }]
+        todoList: [
+          ...state.todoList,
+          {
+            id: action.payload.id,
+            task: action.payload.task,
+            complete: false
+          }
+        ]
       }
     default:
       return state
@@ -67,8 +70,4 @@ function todoReducer(state = initialState, action) {
 
 export default todoReducer
 
-export {
-  todoListAction,
-  markTaskCompleteAction,
-  addNewTodoItemAction
-}
+export { todoListAction, markTaskCompleteAction, addNewTodoItemAction }

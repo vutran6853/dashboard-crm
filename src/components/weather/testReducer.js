@@ -19,22 +19,19 @@ function whatupAction(passId) {
   }
 }
 
-
 function testReducer(state, action) {
   console.log('enter testReducer')
-  switch(action.type) {
-    case WHATUP: 
+  switch (action.type) {
+    case WHATUP:
       return {
         ...state,
-        list: state.list.filter((value) => value.id === action.payload ? value.complete = 'true' : value.complete = 'false')
+        list: state.list.filter((value) =>
+          value.id === action.payload ? (value.complete = 'true') : (value.complete = 'false')
+        )
       }
   }
 }
 
-
 export default testReducer
 
-export {
-  whatupAction,
-  initialState
-}
+export { whatupAction, initialState }

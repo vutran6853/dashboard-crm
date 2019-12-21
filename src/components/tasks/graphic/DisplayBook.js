@@ -6,12 +6,12 @@ function DisplayBook(props) {
 
   const displayPurchaseDate = props.bookData.map((value) => {
     let date = new Date(value.purchase_date)
-    let month = (date.getUTCMonth(value.purchase_date) + 1)
+    let month = date.getUTCMonth(value.purchase_date) + 1
     let day = date.getUTCDate(value.purchase_date)
     return [`${month}/${day}`]
   })
 
-  const data =  {
+  const data = {
     labels: displayPurchaseDate,
     datasets: [
       {

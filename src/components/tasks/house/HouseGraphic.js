@@ -9,20 +9,21 @@ class HouseGraphic extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3020/api/house/history/1`)
-    .then((response) => {
-      // console.log(response)
-      this.setState({ allDate: response.data })
-    })
-    .catch(() => console.log('%c Unable get date at HouseGraphic()', 'color: red; font-size: 1rem'))
+    axios
+      .get(`http://localhost:3020/api/house/history/1`)
+      .then((response) => {
+        // console.log(response)
+        this.setState({ allDate: response.data })
+      })
+      .catch(() => console.log('%c Unable get date at HouseGraphic()', 'color: red; font-size: 1rem'))
   }
 
   render() {
     return (
       <div>
         {/* HouseGraphic Component */}
-        <HouseLineGraphic data={ this.state.allDate } />
-        <HousePie data={ this.state.allDate } />
+        <HouseLineGraphic data={this.state.allDate} />
+        <HousePie data={this.state.allDate} />
       </div>
     )
   }

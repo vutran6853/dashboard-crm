@@ -19,7 +19,7 @@ function HouseLineGraphic(props) {
   //   return [`${month}/${day}`]
   // })
 
-  let data =  {
+  let data = {
     labels: displayPaymentDate,
     datasets: [
       {
@@ -38,7 +38,7 @@ function HouseLineGraphic(props) {
     <div>
       HouseLineGraphic
       {/* <Line data={ data } /> */}
-      <Bar data={ data } />
+      <Bar data={data} />
       {/* <Pie data={ data } /> */}
       {/* <Doughnut data={ data } /> */}
     </div>

@@ -6,16 +6,17 @@
 .container {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 
 /* Remove Inner And Outer Button */
-input[type="number"] {
+input[type='number'] {
   -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }

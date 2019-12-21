@@ -8,10 +8,12 @@ import store from '../../duck/store'
 
 configure({ adapter: new Adapter() })
 
-it('renders without crashing', function () {
-  const wrapper = mount(  <Provider store={ store }>
-                            <Task />
-                          </Provider> )
+it('renders without crashing', function() {
+  const wrapper = mount(
+    <Provider store={store}>
+      <Task />
+    </Provider>
+  )
 
   console.log('WRAPPER = ', wrapper.html())
 })

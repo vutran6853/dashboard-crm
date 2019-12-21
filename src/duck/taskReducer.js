@@ -8,10 +8,10 @@ const RESET_STATE = 'RESET_STATE'
 
 const initialState = {
   selectItem: ['', 'Drink', 'Food', 'Gas', 'Book', 'Etc'],
-  price: 0,
+  price: '',
   item: '',
-  sale: 0,
-  saleDiscount: 0,
+  sale: '',
+  saleDiscount: '',
   total: ''
 }
 
@@ -58,7 +58,7 @@ function restartStateAction() {
 }
 
 function taskReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_PRICE:
       return {
         ...state,
@@ -74,12 +74,12 @@ function taskReducer(state = initialState, action) {
         ...state,
         sale: action.payload
       }
-    case TOTAL: 
+    case TOTAL:
       return {
         ...state,
         total: action.payload
       }
-    case SALE_DISCOUNT: 
+    case SALE_DISCOUNT:
       return {
         ...state,
         saleDiscount: action.payload
@@ -98,11 +98,4 @@ function taskReducer(state = initialState, action) {
 
 export default taskReducer
 
-export {
-  setPriceAction,
-  setSaleAction,
-  setTotalAction,
-  setItemAction,
-  setSaleDiscountAction,
-  restartStateAction
-}
+export { setPriceAction, setSaleAction, setTotalAction, setItemAction, setSaleDiscountAction, restartStateAction }

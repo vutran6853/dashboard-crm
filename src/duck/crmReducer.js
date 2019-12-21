@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const ADD_LIST = 'ADD_LIST'
 const ADDPRICE = 'ADDPRICE'
@@ -42,13 +42,13 @@ function setBothAction(name, passValue) {
 }
 
 function crmReducer(state = initialState, action) {
-  switch(action.type) {
-    case `${ ADD_LIST }_FULFILLED`:
+  switch (action.type) {
+    case `${ADD_LIST}_FULFILLED`:
       return {
         ...state,
         item: action.payload
       }
-    case `${ ADDPRICE }_FULFILLED`:
+    case `${ADDPRICE}_FULFILLED`:
       return {
         ...state,
         price: action.payload
@@ -58,7 +58,7 @@ function crmReducer(state = initialState, action) {
         ...state,
         [action.payload[0]]: action.payload[1]
       }
-    case `${ GETCONTACTS }_FULFILLED`:
+    case `${GETCONTACTS}_FULFILLED`:
       return {
         ...state,
         contactsList: action.payload.data
@@ -70,9 +70,4 @@ function crmReducer(state = initialState, action) {
 
 export default crmReducer
 
-export {
-  getContactsListAction,
-  setSelectAction,
-  setPriceAction,
-  setBothAction
-}
+export { getContactsListAction, setSelectAction, setPriceAction, setBothAction }

@@ -11,22 +11,23 @@ class Navbar extends Component {
   render() {
     let displayItem = this.state.navbarItem.map((value) => {
       return (
-        <div className="navbar-item" key={value}>
-          <Link to={ `/${value}` }>
-            <p>{ value }</p>
-          </Link>
+        <div className="navbar_item" key={value}>
+          <button>
+            <Link to={`/${value}`}>
+              <p>{value}</p>
+            </Link>
+          </button>
         </div>
       )
     })
 
-    let displayUserInfo = this.props.authBool ? (
-      <p>Welcome { this.props.username }</p>
-    ) : 'no'
-
+    let displayUserInfo = this.props.authBool ? <p>Welcome {this.props.username}</p> : 'no'
     return (
-      <div className="navbar-container">
-        { displayUserInfo }
-        { displayItem }
+      <div className="navbar_container">
+        <div className="navbar_side_panel">
+          {displayUserInfo}
+          {displayItem}
+        </div>
       </div>
     )
   }

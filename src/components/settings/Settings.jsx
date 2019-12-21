@@ -4,7 +4,7 @@ import { updateEmailAction, updatePasswordAction, restartStateAction } from '../
 import './setting.scss'
 
 class Settings extends Component {
-  state = { 
+  state = {
     username: '',
     email: '',
     password: ''
@@ -17,7 +17,7 @@ class Settings extends Component {
   handleSubmitInfo = (e, payload) => {
     let { email, username, password } = this.state
     e.preventDefault()
-    
+
     if (email !== '' && payload === 'email') {
       let result = this.handleCheckEmail(email)
       if (result) {
@@ -39,12 +39,12 @@ class Settings extends Component {
           id: this.props.userID,
           newEmail: password
         }
-        console.log('truee');
+        console.log('truee')
         this.props.updatePasswordAction(data)
         // this.handleResetState()
       } else {
-        console.log('falssse');
-        alert('Please check your password')  
+        console.log('falssse')
+        alert('Please check your password')
       }
     }
 
@@ -64,7 +64,6 @@ class Settings extends Component {
     // } else {
     //   console.log(false, 'username')
     // }
-
   }
 
   handleResetState() {
@@ -83,7 +82,6 @@ class Settings extends Component {
   handleCheckPasswordLength(passValue) {
     let str = passValue
     return str.length >= 6 ? true : false
-
   }
 
   testing() {
@@ -100,19 +98,35 @@ class Settings extends Component {
         this area for auth setting.
         <h3>create few input field and submit button</h3>
         <h2>add handle on submit to check if user is login in then save it</h2>
-        
-        <p>Email: { this.props.userEmail } </p>
-        <input value={ this.state.email } type="email" name="email"  placeholder="enter new email..." onChange={ this.handleSetUserInfo }/>
-        <button onClick={ () => this.handleSubmitInfo('email') }>Submit email</button>
+        <p>Email: {this.props.userEmail} </p>
+        <input
+          value={this.state.email}
+          type="email"
+          name="email"
+          placeholder="enter new email..."
+          onChange={this.handleSetUserInfo}
+        />
+        <button onClick={() => this.handleSubmitInfo('email')}>Submit email</button>
         {/* <input type="submit"/> */}
-        { displayMessage }
-        <p>username: { this.props.username }</p>
-        <input value={ this.state.username } type="username" name="username" placeholder="enter new username..." onChange={ this.handleSetUserInfo }/>
-        <button onClick={ () => this.handleSubmitInfo('username') }>Submit username</button>
-
+        {displayMessage}
+        <p>username: {this.props.username}</p>
+        <input
+          value={this.state.username}
+          type="username"
+          name="username"
+          placeholder="enter new username..."
+          onChange={this.handleSetUserInfo}
+        />
+        <button onClick={() => this.handleSubmitInfo('username')}>Submit username</button>
         <p>password:</p>
-        <input value={ this.state.password } type="password" name="password" placeholder="enter new password..." onChange={ this.handleSetUserInfo }/>
-        <button onClick={ () => this.handleSubmitInfo('password') }>Submit password</button>
+        <input
+          value={this.state.password}
+          type="password"
+          name="password"
+          placeholder="enter new password..."
+          onChange={this.handleSetUserInfo}
+        />
+        <button onClick={() => this.handleSubmitInfo('password')}>Submit password</button>
       </div>
     ) : (
       <div className="setting_container">
@@ -122,33 +136,39 @@ class Settings extends Component {
           <h2>add handle on submit to check if user is login in then save it</h2>
         </div>
 
-        <form className="setting_form_container" >
+        <form className="setting_form_container">
           <div>
-            <p>Email: { this.props.userEmail }</p>
-            <input type="email" name="email" placeholder="enter new email..." onChange={ this.handleSetUserInfo }/>
-            <button onClick={ (e) => this.handleSubmitInfo(e, 'email') }>Submit email</button>
+            <p>Email: {this.props.userEmail}</p>
+            <input type="email" name="email" placeholder="enter new email..." onChange={this.handleSetUserInfo} />
+            <button onClick={(e) => this.handleSubmitInfo(e, 'email')}>Submit email</button>
           </div>
 
           <div>
-            <p>username: { this.props.username }</p>
-            <input type="username" name="username" placeholder="enter new username..." onChange={ this.handleSetUserInfo }/>
-            <button onClick={ (e) => this.handleSubmitInfo(e, 'username') }>Submit username</button>
+            <p>username: {this.props.username}</p>
+            <input
+              type="username"
+              name="username"
+              placeholder="enter new username..."
+              onChange={this.handleSetUserInfo}
+            />
+            <button onClick={(e) => this.handleSubmitInfo(e, 'username')}>Submit username</button>
           </div>
 
           <div>
             <p>password:</p>
-            <input type="password" name="password" placeholder="enter new password..." onChange={ this.handleSetUserInfo }/>
-            <button onClick={ (e) => this.handleSubmitInfo(e, 'password') }>Submit password</button> 
+            <input
+              type="password"
+              name="password"
+              placeholder="enter new password..."
+              onChange={this.handleSetUserInfo}
+            />
+            <button onClick={(e) => this.handleSubmitInfo(e, 'password')}>Submit password</button>
           </div>
         </form>
       </div>
     )
 
-    return (
-      <Fragment>
-        { isAuthForSetting }
-      </Fragment>
-    )
+    return <Fragment>{isAuthForSetting}</Fragment>
   }
 }
 

@@ -8,15 +8,15 @@ import DisplayGas from './DisplayGas'
 import './displayGrapic.css'
 
 class Grapic extends Component {
-    state = {
-      gasData: [],
-      drinkData: [],
-      bookData: [],
-      foodData: [],
-      allData: [],
-      nameLabel: ['Gas', 'Drink', 'Book', 'Food'],
-      // monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    }
+  state = {
+    gasData: [],
+    drinkData: [],
+    bookData: [],
+    foodData: [],
+    allData: [],
+    nameLabel: ['Gas', 'Drink', 'Book', 'Food']
+    // monthName: ['---', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  }
 
   componentDidMount() {
     // console.log("%c Unable to get user info at handleGetUserInfo()!", "color: red; font-size:1rem;")
@@ -28,7 +28,6 @@ class Grapic extends Component {
     console.log('exit componentWillUnmount')
   }
 
-
   handleGetUserInfo = async () => {
     try {
       let response = await this.props.fetchUserInfo(this.props.auth.userID)
@@ -37,9 +36,8 @@ class Grapic extends Component {
       this.setState({ drinkData: this.props.grapic.drink })
       this.setState({ bookData: this.props.grapic.book })
       this.setState({ foodData: this.props.grapic.food })
-    }
-    catch {
-      console.log("%c Unable to get user info at handleGetUserInfo()!", "color: red; font-size:1rem;")
+    } catch {
+      console.log('%c Unable to get user info at handleGetUserInfo()!', 'color: red; font-size:1rem;')
     }
   }
 
@@ -48,17 +46,15 @@ class Grapic extends Component {
     try {
       let response = await this.props.fetchFakeUserInfoAction()
       console.log('this.props', this.props.grapic)
-      
+
       this.setState({ gasData: this.props.grapic.gas })
       this.setState({ drinkData: this.props.grapic.drink })
       this.setState({ bookData: this.props.grapic.book })
       this.setState({ foodData: this.props.grapic.food })
       this.setState({ allData: response.value.data })
+    } catch {
+      console.log('%c Unable to get user info at handleGetFakeUserInfo()!', 'color: red; font-size:1rem;')
     }
-    catch {
-      console.log("%c Unable to get user info at handleGetFakeUserInfo()!", "color: red; font-size:1rem;")
-    }
-
   }
 
   handleSelectMonth = (e) => {
@@ -100,8 +96,7 @@ class Grapic extends Component {
 
   handleSelectType = (e) => {
     console.log('e', e.target.value)
-  } 
-
+  }
 
   render() {
     // const fetchRealData = (payload) => {
@@ -128,31 +123,28 @@ class Grapic extends Component {
     // }
 
     // const displayAuthMessage = this.props.authBool ? fetchUserDate(this.props.userID) : displayFakeData()
-    
+
     const displayTypeName = this.props.grapic.utitesLabel.map((value, index) => (
-      <option value={ value } key={ index }>{ value }</option>
+      <option value={value} key={index}>
+        {value}
+      </option>
     ))
 
-    const displayMonth = this.props.grapic.monthName.map((value) => (
-      <option key={ value } >{ value }</option>
-    ))
+    const displayMonth = this.props.grapic.monthName.map((value) => <option key={value}>{value}</option>)
 
     return (
       <div>
-        <select name="type" onChange={ (e) => this.handleSelectMonth(e) }>
-          { displayTypeName }
+        <select name="type" onChange={(e) => this.handleSelectMonth(e)}>
+          {displayTypeName}
         </select>
-        <select onChange={ this.handleSelectType }>
-          { displayMonth }
-        </select>
+        <select onChange={this.handleSelectType}>{displayMonth}</select>
         {/* <input type="month" name="month" value={ `${ this.setCurrentDate() }` } onChange={ (e) => this.handleSelectMonth(e) } /> */}
         {/* <input type="" value=""/> */}
         <div className="grapicContainer">
-          <DisplayGas gasData={ this.state.gasData } name={ this.state.nameLabel[0] } />
-          <DisplayDrink drinkData={ this.state.drinkData } name={ this.state.nameLabel[1] } />
-          <DisplayBook bookData={ this.state.bookData } name={ this.state.nameLabel[2] } />
-          <DisplayFood foodData={ this.state.foodData } name={ this.state.nameLabel[3] } />
-
+          <DisplayGas gasData={this.state.gasData} name={this.state.nameLabel[0]} />
+          <DisplayDrink drinkData={this.state.drinkData} name={this.state.nameLabel[1]} />
+          <DisplayBook bookData={this.state.bookData} name={this.state.nameLabel[2]} />
+          <DisplayFood foodData={this.state.foodData} name={this.state.nameLabel[3]} />
         </div>
         {/* { displayAuthMessage } */}
         {/* {fetchUserDate} */}
@@ -170,4 +162,4 @@ const mapPropToState = (state) => {
   }
 }
 
-export default connect(mapPropToState, { fetchUserInfo, fetchFakeUserInfoAction })( Grapic)
+export default connect(mapPropToState, { fetchUserInfo, fetchFakeUserInfoAction })(Grapic)

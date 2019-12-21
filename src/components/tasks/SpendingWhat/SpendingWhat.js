@@ -1,11 +1,16 @@
 import React from 'react'
-import PropTypes  from 'prop-types'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setSpendItemAction, setSpendPriceAction, setResetStateAction, setPurchaseDateAction, postToDBAction } from '../../../duck/spendReducer'
+import {
+  setSpendItemAction,
+  setSpendPriceAction,
+  setResetStateAction,
+  setPurchaseDateAction,
+  postToDBAction
+} from '../../../duck/spendReducer'
 import './spendingWhat.scss'
 
 function SpendingWhat(props) {
-
   const handlePassValueToReducer = (e) => {
     if (e.target.name === 'price') {
       return props.setSpendPriceAction(parseInt(e.target.value))
@@ -46,20 +51,19 @@ function SpendingWhat(props) {
       purchaseDate: props.spend.purchaseDate
     }
 
-    props.postToDBAction(data)
-    .then((response) => {
-      console.log('response', response)
-      if (response.value.data.length === 0) {
-        alert('Success save to DB')
-      }
-      props.setResetStateAction()
-    })
-    .catch((err) => console.log("%c Unable to post to db at handlePostToDB()!", "color: red; font-size:1rem;", err))
+    props
+      .postToDBAction(data)
+      .then((response) => {
+        console.log('response', response)
+        if (response.value.data.length === 0) {
+          alert('Success save to DB')
+        }
+        props.setResetStateAction()
+      })
+      .catch((err) => console.log('%c Unable to post to db at handlePostToDB()!', 'color: red; font-size:1rem;', err))
   }
 
-  const displaySelectItem = props.spend.selectItem.map((value) => (
-    <option key={value}>{ value }</option>
-  ))
+  const displaySelectItem = props.spend.selectItem.map((value) => <option key={value}>{value}</option>)
 
   return (
     <div className="spendingWhat-container">
@@ -68,29 +72,33 @@ function SpendingWhat(props) {
       <div className="spendingWhat-form">
         <div>
           <h3>Type</h3>
-          <select name="item" value={ props.spend.item } onChange={ handlePassValueToReducer }>
-            { displaySelectItem }
+          <select name="item" value={props.spend.item} onChange={handlePassValueToReducer}>
+            {displaySelectItem}
           </select>
         </div>
         <div>
           <h3>Price</h3>
-          <input  type="number"
-                  name="price"
-                  value={ props.spend.price }
-                  placeholder="Enter Price..."
-                  onChange={ handlePassValueToReducer }
+          <input
+            type="number"
+            name="price"
+            value={props.spend.price}
+            placeholder="Enter Price..."
+            onChange={handlePassValueToReducer}
           />
         </div>
         <div>
           <h3>Date</h3>
-          <input  type="date"
-                  name="purchaseDate"
-                  value={ props.spend.purchaseDate }
-                  placeholder="Enter Date..."
-                  onChange={ handlePassValueToReducer }
+          <input
+            type="date"
+            name="purchaseDate"
+            value={props.spend.purchaseDate}
+            placeholder="Enter Date..."
+            onChange={handlePassValueToReducer}
           />
         </div>
-        <button className="submit" onClick={ handleSaveToDB }>Submit</button>
+        <button className="submit" onClick={handleSaveToDB}>
+          Submit
+        </button>
       </div>
 
       <p>To see your data in graphic Go to Task -> under graphic</p>
@@ -117,4 +125,10 @@ SpendingWhat.propTypes = {
   setResetStateAction: PropTypes.func.isRequired
 }
 
-export default connect(mapPropToState, { setSpendItemAction, setSpendPriceAction, setPurchaseDateAction, setResetStateAction, postToDBAction })(SpendingWhat)
+export default connect(mapPropToState, {
+  setSpendItemAction,
+  setSpendPriceAction,
+  setPurchaseDateAction,
+  setResetStateAction,
+  postToDBAction
+})(SpendingWhat)

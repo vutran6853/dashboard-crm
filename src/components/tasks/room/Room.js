@@ -8,7 +8,7 @@ function Room(props) {
   let [year, setUserYear] = useState({
     range_date: handleCreateRangeOfYear(),
     userSelectYear: ''
-   })
+  })
   let [month, setMonth] = useState({
     range_month: handleRangeMonth(),
     userSelectMonth: ''
@@ -16,7 +16,6 @@ function Room(props) {
   let [roomID, setRoomID] = useState('')
 
   // console.log('month', month)
-
 
   const handlePostRentRoom = () => {
     if (roomID === '') {
@@ -26,22 +25,22 @@ function Room(props) {
     if (!isNaN(roomID)) {
       console.log('inside')
       let newObj = {
-        date: `${ year.userSelectYear }-${ month.userSelectMonth }`,
+        date: `${year.userSelectYear}-${month.userSelectMonth}`,
         amount,
         room_ID: roomID
       }
       console.log(newObj)
 
-      axios.post('http://localhost:3020/api/room/payment', newObj)
-      .then((response) => {
-        console.log(response)
-        if (response.data.length === 0) {
-          alert('post complete')
-          resetAllState()
-        }
-      })
-      .catch(() => console.log('%c Unable post at handlePostRentRoom()', 'color: red; font-size: 1rem'))
-
+      axios
+        .post('http://localhost:3020/api/room/payment', newObj)
+        .then((response) => {
+          console.log(response)
+          if (response.data.length === 0) {
+            alert('post complete')
+            resetAllState()
+          }
+        })
+        .catch(() => console.log('%c Unable post at handlePostRentRoom()', 'color: red; font-size: 1rem'))
     }
     return null
   }
@@ -57,7 +56,6 @@ function Room(props) {
       userSelectMonth: ''
     })
     setRoomID('')
-    
   }
 
   const handleSetAmount = (e) => {
@@ -83,11 +81,15 @@ function Room(props) {
   }
 
   const renderYears = year.range_date.map((value) => (
-    <option key={ value } value={ value } >{ value }</option>
+    <option key={value} value={value}>
+      {value}
+    </option>
   ))
 
   const renderMonths = month.range_month.map((value, index) => (
-    <option key={ index } value={ index }>{ value }</option>
+    <option key={index} value={index}>
+      {value}
+    </option>
   ))
 
   console.log(year)
@@ -96,24 +98,17 @@ function Room(props) {
     <div>
       Room Component
       <h3>Year</h3>
-      <select onChange={ handleSelectYear }>
-        { renderYears }
-      </select>
-
+      <select onChange={handleSelectYear}>{renderYears}</select>
       <h3>Month</h3>
-      <select onChange={ handleSelectMonth }>
-        { renderMonths }
-      </select>
-
+      <select onChange={handleSelectMonth}>{renderMonths}</select>
       <h3>Room</h3>
-      <select onChange={ handleSelectRoomID }>
+      <select onChange={handleSelectRoomID}>
         <option value="----">----</option>
         <option value="1">1</option>
         <option value="2">2</option>
       </select>
-
-      <input onChange={ handleSetAmount } value={ amount } placeholder="Enter room payment"/>
-      <button onClick={ handlePostRentRoom }>Submit</button>
+      <input onChange={handleSetAmount} value={amount} placeholder="Enter room payment" />
+      <button onClick={handlePostRentRoom}>Submit</button>
     </div>
   )
 }

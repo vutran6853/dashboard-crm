@@ -6,7 +6,7 @@ function HouseUtitlesGrapic(props) {
   const utitesTotalArray = props.grapic.userUtitesFilterData.map((value) => value.total)
   const utitesPaymentDate = props.grapic.userUtitesFilterData.map((value) => value.date)
 
-  const data =  {
+  const data = {
     labels: utitesPaymentDate,
     datasets: [
       {
@@ -25,23 +25,15 @@ function HouseUtitlesGrapic(props) {
   return (
     <div className="house_utites_graphic_item">
       <p>Overall included (Gas, Water, internet, electric)</p>
-      { props.grapic.userSelectGrapicType === '---' ||
-        props.grapic.userSelectGrapicType === 'Line' ? (
-          <Line data={ data }
-                width={ 100 }
-                height={ 40 }
-          />
-        ) : (
-          <Bar data={ data }
-          width={ 100 }
-          height={ 40 }
-          />
-        )
-      }
+      {props.grapic.userSelectGrapicType === '---' || props.grapic.userSelectGrapicType === 'Line' ? (
+        <Line data={data} width={100} height={40} />
+      ) : (
+        <Bar data={data} width={100} height={40} />
+      )}
     </div>
   )
 }
 
 const mapStateToProps = (state) => state
 
-export default connect(mapStateToProps, {  })(HouseUtitlesGrapic)
+export default connect(mapStateToProps, {})(HouseUtitlesGrapic)
